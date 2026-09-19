@@ -1,0 +1,4005 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Undangan Pernikahan — Nafi' & Musa</title>
+
+<!--
+  ====================================================================
+  PANDUAN EDIT CEPAT (baca ini dulu sebelum publish)
+  ====================================================================
+  1. NAMA & TANGGAL  : cari komentar "EDIT: NAMA" / "EDIT: TANGGAL"
+  2. FOTO             : semua foto memakai <img> dengan atribut
+                         onerror="fallbackImg(this)" — jadi kalau file
+                         belum ada, otomatis tampil kotak placeholder
+                         yang rapi (bukan ikon rusak).
+                         Taruh file foto Anda di folder "images/" persis
+                         di sebelah file index.html ini, dengan nama:
+                         images/cover-bg.jpg
+                         images/prewedding-hero.jpg
+                         images/mempelai-wanita.jpg
+                         images/mempelai-pria.jpg
+                         images/timeline-1.jpg ... images/timeline-5.jpg
+                         images/galeri-1.jpg ... images/galeri-8.jpg
+                         images/wayang-left.png
+                         images/wayang-right.png
+                         images/cover-frame.png
+                         images/couple-frame-left.png
+                         images/couple-frame-right.png
+  3. LOKASI / MAPS     : cari komentar "EDIT: ALAMAT" — ganti query pada
+                         iframe & link tombol "Lihat Maps".
+  4. REKENING          : cari komentar "EDIT: REKENING".
+  5. NAMA TAMU OTOMATIS: buka file lewat URL ?to=Nama%20Tamu
+                         contoh: index.html?to=Bapak%20Handoko
+  ====================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Marcellus&family=Jost:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================= TOKENS ============================= */
+:root{
+  --c-cream:      #FBF6EC;
+  --c-cream-deep: #F1E6D3;
+  --c-paper:      #FFFDF8;
+  --c-gold:       #B8935A;
+  --c-gold-light: #D9BD8E;
+  --c-gold-dark:  #8C6C3C;
+  --c-maroon:     #7C3A3D;
+  --c-maroon-deep:#5C2A2D;
+  --c-sage:       #8C9B74;
+  --c-blush:      #EBD9C8;
+  --c-ink:        #3A2E22;
+  --c-ink-soft:   #6B5D4C;
+
+  --f-display: 'Cormorant Garamond', serif;
+  --f-eyebrow: 'Marcellus', serif;
+  --f-body:    'Jost', sans-serif;
+  --f-arabic:  'Noto Naskh Arabic', serif;
+
+  --ease: cubic-bezier(.22,.68,.2,1);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+html,body{
+  background:var(--c-cream);
+  color:var(--c-ink);
+  font-family:var(--f-body);
+  overflow-x:hidden;
+  width:100%;
+}
+body.locked{ height:100vh; overflow:hidden; }
+
+img{ max-width:100%; display:block; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+a{ color:inherit; text-decoration:none; }
+
+::selection{ background:var(--c-gold-light); color:var(--c-maroon-deep); }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+}
+
+/* ============================= UTIL ============================= */
+.section{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  padding:96px 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+.section-inner{ width:100%; max-width:560px; position:relative; z-index:2; }
+.eyebrow{
+  font-family:var(--f-eyebrow);
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  font-size:12px;
+  color:var(--c-gold-dark);
+  margin-bottom:14px;
+}
+.title-display{
+  font-family:var(--f-display);
+  font-weight:500;
+  color:var(--c-maroon-deep);
+  line-height:1.1;
+}
+.lead{
+  font-family:var(--f-body);
+  font-weight:300;
+  color:var(--c-ink-soft);
+  line-height:1.8;
+  font-size:15px;
+}
+
+.reveal{ opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal.in{ opacity:1; transform:translateY(0); }
+.reveal-scale{ opacity:0; transform:scale(.92); transition:opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal-scale.in{ opacity:1; transform:scale(1); }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.18s; } .d3{ transition-delay:.28s; } .d4{ transition-delay:.38s; } .d5{ transition-delay:.48s; }
+
+/* ---- batik sekar (signature ornament) ---- */
+.sekar{ display:block; margin:22px auto; opacity:.85; }
+.divider-line{
+  width:1px; height:56px; margin:0 auto;
+  background:linear-gradient(to bottom, transparent, var(--c-gold), transparent);
+}
+
+/* soft parang wash used as ambient section texture */
+.parang-wash{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    repeating-linear-gradient(135deg, rgba(184,147,90,.05) 0 2px, transparent 2px 34px);
+}
+
+/* ============================= NAV DOTS ============================= */
+#navdots{
+  position:fixed; right:18px; top:50%; transform:translateY(-50%);
+  display:flex; flex-direction:column; gap:12px; z-index:50;
+}
+#navdots button{
+  width:8px; height:8px; border-radius:50%;
+  background:rgba(124,58,61,.22);
+  transition:all .35s var(--ease);
+}
+#navdots button.active{ background:var(--c-maroon); transform:scale(1.4); }
+@media (max-width:760px){ #navdots{ display:none; } }
+
+/* ============================= COVER ============================= */
+#cover{
+  position:fixed; inset:0; z-index:100;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(184,147,90,.28), transparent 60%),
+    linear-gradient(180deg, var(--c-cream-deep), var(--c-cream) 55%);
+  display:flex; align-items:center; justify-content:center;
+  transition:opacity 1.1s var(--ease), visibility 1.1s var(--ease);
+}
+#cover.closed{ opacity:0; visibility:hidden; pointer-events:none; }
+#cover::before, #cover::after{
+  content:""; position:absolute; width:120px; height:120px;
+  border:1px solid var(--c-gold);
+  opacity:.55;
+}
+#cover::before{ top:28px; left:28px; border-right:none; border-bottom:none; }
+#cover::after{ bottom:28px; right:28px; border-left:none; border-top:none; }
+.cover-card{
+  width:100%; max-width:420px; padding:52px 30px;
+  text-align:center; position:relative;
+}
+.cover-photo-ring{
+  width:118px; height:118px; margin:0 auto 22px;
+  border-radius:50%;
+  border:1px solid var(--c-gold);
+  padding:6px;
+  animation:spin-slow 26s linear infinite;
+}
+@keyframes spin-slow{ to{ transform:rotate(360deg); } }
+.cover-photo-ring svg{ width:100%; height:100%; display:block; }
+.cover-eyebrow{
+  font-family:var(--f-eyebrow); font-size:11px; letter-spacing:.4em;
+  color:var(--c-gold-dark); text-transform:uppercase; margin-bottom:18px;
+}
+.cover-names{
+  font-family:var(--f-display); font-style:italic; font-weight:500;
+  font-size:clamp(38px,10vw,54px); color:var(--c-maroon-deep); line-height:1.15;
+}
+.cover-amp{ display:block; font-size:.5em; color:var(--c-gold); margin:6px 0; font-style:normal; }
+.cover-date{
+  margin-top:16px; font-family:var(--f-body); font-weight:400;
+  letter-spacing:.14em; font-size:14px; color:var(--c-ink-soft);
+}
+.cover-to{
+  margin-top:30px; padding-top:22px; border-top:1px solid rgba(124,58,61,.18);
+  font-size:12px; letter-spacing:.1em; color:var(--c-ink-soft);
+}
+.cover-to b{
+  display:block; margin-top:6px; font-family:var(--f-display); font-style:italic;
+  font-size:20px; color:var(--c-maroon-deep); font-weight:500;
+}
+.btn-open{
+  margin-top:34px; display:inline-flex; align-items:center; gap:10px;
+  padding:13px 30px; border-radius:999px;
+  background:var(--c-maroon); color:var(--c-cream);
+  font-size:12px; letter-spacing:.24em; text-transform:uppercase;
+  box-shadow:0 10px 26px -10px rgba(124,58,61,.6);
+  animation:pulse-open 2.6s ease-in-out infinite;
+}
+@keyframes pulse-open{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-5px); } }
+.btn-open svg{ width:14px; height:14px; }
+
+/* ============================= GREETING ============================= */
+#greeting{ padding-top:70px; }
+.hero-photo-wrap{
+  position:relative; width:100%; max-width:340px; margin:0 auto 28px;
+}
+.hero-photo-wrap::before{
+  content:""; position:absolute; inset:-14px;
+  border:1px solid var(--c-gold-light); border-radius:4px;
+  z-index:0;
+}
+.hero-photo{
+  position:relative; z-index:1; width:100%; aspect-ratio:3/4;
+  border-radius:4px; overflow:hidden;
+  box-shadow:0 30px 60px -20px rgba(58,46,34,.45), 0 10px 24px -10px rgba(124,58,61,.35);
+  background:linear-gradient(160deg,var(--c-blush),var(--c-cream-deep));
+}
+.hero-photo img{ width:100%; height:100%; object-fit:cover; }
+.hero-photo .backdrop-blur{
+  position:absolute; inset:0; z-index:-1; filter:blur(30px); opacity:.55; transform:scale(1.15);
+}
+.countdown{
+  display:flex; gap:10px; justify-content:center; margin:26px 0 8px; flex-wrap:wrap;
+}
+.countdown div{
+  min-width:64px; padding:12px 6px; background:var(--c-paper);
+  border:1px solid rgba(184,147,90,.35); border-radius:8px;
+}
+.countdown .num{ font-family:var(--f-display); font-size:26px; color:var(--c-maroon-deep); font-weight:600; }
+.countdown .lbl{ font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--c-ink-soft); }
+.scroll-cue{
+  margin-top:38px; display:inline-flex; flex-direction:column; align-items:center; gap:8px;
+  animation:bob 2.2s ease-in-out infinite; color:var(--c-gold-dark);
+}
+@keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+.scroll-cue span{ font-size:10px; letter-spacing:.3em; text-transform:uppercase; }
+
+/* ============================= AYAT ============================= */
+#ayat{ background:linear-gradient(180deg,var(--c-cream),var(--c-cream-deep)); }
+.ayat-frame{
+  position:relative; padding:44px 26px; background:var(--c-paper);
+  border-radius:6px; box-shadow:0 24px 50px -24px rgba(58,46,34,.3);
+}
+.ayat-frame::before, .ayat-frame::after{
+  content:""; position:absolute; width:34px; height:34px;
+  border:1px solid var(--c-gold);
+}
+.ayat-frame::before{ top:10px; left:10px; border-right:none; border-bottom:none; }
+.ayat-frame::after{ bottom:10px; right:10px; border-left:none; border-top:none; }
+.ayat-arabic{
+  font-family:var(--f-arabic); font-size:clamp(22px,5.4vw,30px);
+  color:var(--c-maroon-deep); line-height:2.15; direction:rtl;
+}
+.ayat-translation{
+  margin-top:22px; font-family:var(--f-body); font-weight:300; font-style:italic;
+  color:var(--c-ink-soft); font-size:14.5px; line-height:1.9;
+}
+.ayat-source{
+  margin-top:16px; font-family:var(--f-eyebrow); font-size:11px; letter-spacing:.2em;
+  color:var(--c-gold-dark); text-transform:uppercase;
+}
+.ayat-note{ margin-top:26px; font-size:12px; color:var(--c-ink-soft); opacity:.75; }
+
+/* ============================= COUPLE ============================= */
+.couple-grid{ display:flex; flex-direction:column; gap:44px; margin-top:8px; width:100%; }
+@media (min-width:640px){ .couple-grid{ flex-direction:row; } }
+.couple-card{ flex:1; text-align:center; }
+.couple-photo{
+  width:190px; height:230px; margin:0 auto 18px; position:relative;
+  border-radius:120px 120px 8px 8px; overflow:hidden;
+  border:6px solid var(--c-paper);
+  box-shadow:0 22px 40px -18px rgba(58,46,34,.4), 0 0 0 1px var(--c-gold-light);
+  background:linear-gradient(160deg,var(--c-blush),var(--c-cream-deep));
+}
+.couple-photo img{ width:100%; height:100%; object-fit:cover; }
+.couple-name{ font-family:var(--f-display); font-style:italic; font-size:26px; color:var(--c-maroon-deep); font-weight:600; }
+.couple-order{ font-size:12px; color:var(--c-gold-dark); letter-spacing:.08em; margin-top:4px; }
+.couple-parents{ margin-top:10px; font-size:13.5px; color:var(--c-ink-soft); line-height:1.7; }
+.couple-ig{
+  margin-top:14px; display:inline-flex; align-items:center; gap:6px;
+  font-size:12.5px; padding:7px 16px; border:1px solid var(--c-gold); border-radius:999px;
+  color:var(--c-maroon-deep); transition:all .3s var(--ease);
+}
+.couple-ig:hover{ background:var(--c-maroon); color:var(--c-cream); }
+.couple-and{ font-family:var(--f-display); font-style:italic; font-size:34px; color:var(--c-gold); align-self:center; }
+
+/* ============================= EVENTS ============================= */
+.event-card{
+  width:100%; text-align:left; background:var(--c-paper);
+  border-radius:10px; padding:24px 24px 20px; margin-bottom:20px;
+  border-left:3px solid var(--c-gold);
+  box-shadow:0 18px 38px -22px rgba(58,46,34,.35);
+}
+.event-name{ font-family:var(--f-display); font-size:24px; font-weight:600; color:var(--c-maroon-deep); }
+.event-row{ display:flex; gap:10px; margin-top:10px; font-size:13.5px; color:var(--c-ink-soft); align-items:flex-start; }
+.event-row svg{ width:15px; height:15px; margin-top:2px; flex-shrink:0; color:var(--c-gold-dark); }
+.btn-map{
+  margin-top:14px; display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; letter-spacing:.08em; padding:9px 18px;
+  border:1px solid var(--c-maroon); border-radius:999px; color:var(--c-maroon);
+  transition:all .3s var(--ease);
+}
+.btn-map:hover{ background:var(--c-maroon); color:var(--c-cream); }
+.map-embed{ margin-top:34px; width:100%; border-radius:10px; overflow:hidden; box-shadow:0 18px 38px -22px rgba(58,46,34,.35); }
+.map-embed iframe{ width:100%; height:220px; border:0; display:block; filter:sepia(.12) saturate(.9); }
+.map-embed-title{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--c-gold-dark); margin:22px 0 10px; text-align:left; }
+
+/* ============================= TIMELINE ============================= */
+.timeline{ position:relative; width:100%; margin-top:20px; }
+.timeline::before{
+  content:""; position:absolute; left:19px; top:6px; bottom:6px; width:1px;
+  background:linear-gradient(to bottom, transparent, var(--c-gold), var(--c-gold), transparent);
+}
+.t-item{ position:relative; padding-left:56px; text-align:left; margin-bottom:36px; }
+.t-dot{
+  position:absolute; left:9px; top:2px; width:22px; height:22px; border-radius:50%;
+  background:var(--c-cream); border:2px solid var(--c-gold); display:flex; align-items:center; justify-content:center;
+  font-family:var(--f-eyebrow); font-size:10px; color:var(--c-maroon-deep);
+}
+.t-photo{
+  width:100%; aspect-ratio:16/10; border-radius:8px; overflow:hidden; margin-bottom:12px;
+  background:linear-gradient(160deg,var(--c-blush),var(--c-cream-deep));
+  box-shadow:0 16px 30px -18px rgba(58,46,34,.35);
+}
+.t-photo img{ width:100%; height:100%; object-fit:cover; }
+.t-title{ font-family:var(--f-display); font-size:21px; font-weight:600; color:var(--c-maroon-deep); }
+.t-date{ font-size:11px; letter-spacing:.1em; color:var(--c-gold-dark); text-transform:uppercase; margin:3px 0 8px; }
+.t-desc{ font-size:13.5px; color:var(--c-ink-soft); line-height:1.8; font-weight:300; }
+
+/* ============================= GALLERY ============================= */
+.gallery-intro{
+  max-width:460px;
+  margin:0 auto 28px;
+  color:var(--c-ink-soft);
+  font-size:13.5px;
+  line-height:1.8;
+}
+.gallery-grid{
+  width:100%;
+  column-count:2;
+  column-gap:12px;
+  margin-top:8px;
+}
+.g-item{
+  position:relative;
+  width:100%;
+  margin:0 0 12px;
+  border-radius:14px;
+  overflow:hidden;
+  break-inside:avoid;
+  background:linear-gradient(160deg,var(--c-blush),var(--c-cream-deep));
+  box-shadow:0 16px 32px -22px rgba(58,46,34,.42);
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .55s var(--ease), transform .55s var(--ease), box-shadow .35s ease;
+}
+.g-item.ready{ opacity:1; transform:translateY(0); }
+.g-item:hover{ box-shadow:0 20px 38px -20px rgba(58,46,34,.5); }
+.g-item img{
+  width:100%;
+  height:auto;
+  min-height:150px;
+  display:block;
+  object-fit:cover;
+  transition:transform .65s var(--ease), filter .65s var(--ease);
+}
+.g-item:hover img{ transform:scale(1.045); filter:saturate(1.04); }
+.g-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 66%,rgba(48,35,24,.16));
+  opacity:0;
+  transition:opacity .35s ease;
+}
+.g-item:hover::after{ opacity:1; }
+.gallery-empty{
+  display:none;
+  max-width:420px;
+  margin:24px auto 0;
+  padding:26px 22px;
+  border:1px solid rgba(184,147,90,.24);
+  border-radius:18px;
+  background:rgba(255,253,248,.68);
+  color:var(--c-ink-soft);
+  font-size:13px;
+  line-height:1.8;
+}
+.gallery-empty.show{ display:block; }
+.gallery-empty svg{ width:26px; height:26px; margin:0 auto 10px; color:var(--c-gold-dark); opacity:.7; }
+#lightbox{
+  position:fixed; inset:0; background:rgba(38,29,23,.94); z-index:200;
+  display:flex; align-items:center; justify-content:center; padding:24px;
+  opacity:0; visibility:hidden; transition:opacity .35s var(--ease), visibility .35s var(--ease);
+}
+#lightbox.open{ opacity:1; visibility:visible; }
+#lightbox img{ max-width:min(92vw,900px); max-height:88vh; border-radius:12px; box-shadow:0 30px 70px rgba(0,0,0,.55); }
+#lightbox button{
+  position:absolute; top:20px; right:20px; width:42px; height:42px;
+  display:grid; place-items:center; border-radius:50%;
+  background:rgba(255,255,255,.12); color:var(--c-cream); font-size:28px;
+  backdrop-filter:blur(8px);
+}
+
+/* ============================= RSVP ============================= */
+.rsvp-intro{
+  max-width:450px;
+  margin:0 auto 26px;
+  color:var(--c-ink-soft);
+  font-size:13.5px;
+  line-height:1.8;
+}
+.rsvp-card{
+  width:100%;
+  padding:24px;
+  border:1px solid rgba(184,147,90,.22);
+  border-radius:20px;
+  background:rgba(255,253,248,.76);
+  box-shadow:0 22px 44px -32px rgba(58,46,34,.42);
+  text-align:left;
+}
+.form-field{ margin-bottom:16px; }
+.form-field label{ display:block; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--c-gold-dark); margin-bottom:7px; }
+.form-field input, .form-field select, .form-field textarea{
+  width:100%; padding:12px 14px; border:1px solid rgba(124,58,61,.2); border-radius:10px;
+  background:rgba(255,253,248,.92); font-family:var(--f-body); font-size:14px; color:var(--c-ink);
+  outline:none; transition:border-color .25s ease, box-shadow .25s ease;
+}
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus{
+  border-color:rgba(184,147,90,.72);
+  box-shadow:0 0 0 3px rgba(184,147,90,.1);
+}
+.form-field textarea{ resize:vertical; min-height:88px; }
+.btn-submit{
+  width:100%; padding:14px; border-radius:10px; background:linear-gradient(135deg,var(--c-maroon),var(--c-maroon-deep)); color:var(--c-cream);
+  font-size:13px; letter-spacing:.12em; text-transform:uppercase; margin-top:6px;
+  transition:transform .25s var(--ease), box-shadow .25s ease;
+  box-shadow:0 12px 24px -16px rgba(92,42,45,.7);
+}
+.btn-submit:active{ transform:scale(.98); }
+.rsvp-list{ margin-top:22px; display:flex; flex-direction:column; gap:10px; max-height:260px; overflow:auto; }
+.rsvp-entry{ background:rgba(255,253,248,.86); border-radius:12px; padding:13px 14px; font-size:13px; border-left:3px solid var(--c-sage); text-align:left; }
+.rsvp-entry b{ color:var(--c-maroon-deep); font-family:var(--f-display); font-size:17px; }
+.rsvp-entry .status{ float:right; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--c-gold-dark); }
+
+/* ============================= WEDDING GIFT ============================= */
+.gift-intro{
+  max-width:470px;
+  margin:0 auto 28px;
+  color:var(--c-ink-soft);
+  font-size:13.5px;
+  line-height:1.85;
+}
+.gift-subtitle{
+  margin:30px 0 15px;
+  font-family:var(--f-display);
+  font-size:22px;
+  font-style:italic;
+  color:var(--c-maroon-deep);
+}
+.bank-card{
+  width:100%; min-height:190px; border-radius:18px; padding:24px;
+  color:#fff; position:relative; overflow:hidden; margin-bottom:16px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  box-shadow:0 24px 44px -25px rgba(58,46,34,.58);
+  text-align:left;
+}
+.bank-card.b1{ background:linear-gradient(135deg,#7C3A3D,#522628); }
+.bank-card.b2{ background:linear-gradient(135deg,#9A7540,#67502E); }
+.bank-card::before{
+  content:""; position:absolute; right:-40px; top:-40px; width:190px; height:190px; border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,.13), transparent 70%);
+}
+.bank-top{ display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:1; }
+.bank-top .chip{ width:40px; height:29px; border-radius:6px; background:linear-gradient(135deg,#E2C68F,#BB9557); }
+.bank-top .logo{ font-family:var(--f-eyebrow); font-size:17px; letter-spacing:.1em; }
+.bank-number{ position:relative; z-index:1; font-family:'Jost',sans-serif; font-size:clamp(21px,5vw,27px); letter-spacing:.13em; }
+.bank-bottom{ position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; gap:14px; font-size:11px; letter-spacing:.04em; }
+.bank-bottom .name{ font-size:13px; line-height:1.5; }
+.btn-copy{
+  flex-shrink:0; background:rgba(255,255,255,.16); color:#fff; padding:9px 15px; border-radius:999px; font-size:11px;
+  letter-spacing:.04em; backdrop-filter:blur(5px);
+}
+.gift-confirm-card{
+  margin-top:30px;
+  padding:24px 20px;
+  border:1px solid rgba(184,147,90,.28);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(255,253,248,.92),rgba(241,230,211,.62));
+  box-shadow:0 20px 42px -32px rgba(58,46,34,.5);
+  text-align:left;
+}
+.gift-confirm-head{ display:flex; gap:13px; align-items:flex-start; margin-bottom:18px; }
+.gift-confirm-icon{
+  width:42px; height:42px; flex:0 0 42px; border-radius:50%;
+  display:grid; place-items:center; background:rgba(140,155,116,.15); color:#687653;
+}
+.gift-confirm-icon svg{ width:21px; height:21px; }
+.gift-confirm-title{ font-family:var(--f-display); font-size:21px; color:var(--c-maroon-deep); font-weight:600; }
+.gift-confirm-text{ margin-top:4px; color:var(--c-ink-soft); font-size:12.5px; line-height:1.7; }
+.gift-confirm-note{
+  margin-top:12px; padding:11px 12px; border-radius:10px;
+  background:rgba(140,155,116,.1); color:#667153; font-size:11.5px; line-height:1.65;
+}
+.btn-whatsapp{
+  width:100%; margin-top:6px; padding:13px 16px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center; gap:9px;
+  background:#647755; color:#fff; font-size:12.5px; letter-spacing:.04em;
+  box-shadow:0 12px 24px -16px rgba(78,96,63,.65);
+}
+.btn-whatsapp svg{ width:18px; height:18px; }
+.physical-gift-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; }
+.physical-gift-card{
+  padding:18px 15px;
+  border:1px solid rgba(184,147,90,.34);
+  border-radius:16px;
+  background:rgba(255,253,248,.66);
+  text-align:left;
+}
+.physical-gift-card .icon{ width:34px; height:34px; display:grid; place-items:center; border-radius:50%; background:rgba(184,147,90,.1); color:var(--c-gold-dark); margin-bottom:11px; }
+.physical-gift-card .icon svg{ width:17px; height:17px; }
+.physical-gift-card h4{ font-family:var(--f-display); font-size:18px; color:var(--c-maroon-deep); margin-bottom:7px; }
+.physical-gift-card p{ font-size:11.5px; line-height:1.7; color:var(--c-ink-soft); }
+.physical-gift-card a{ display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:11.5px; color:var(--c-maroon-deep); font-weight:600; }
+
+@media (max-width:520px){
+  .gallery-grid{ column-gap:9px; }
+  .g-item{ margin-bottom:9px; border-radius:11px; }
+  .rsvp-card{ padding:20px 16px; }
+  .bank-card{ min-height:176px; padding:21px 19px; }
+  .physical-gift-grid{ grid-template-columns:1fr; }
+}
+
+/* ============================= WISHES ============================= */
+.wish-form{ display:flex; flex-direction:column; gap:12px; text-align:left; }
+.wish-list{ margin-top:26px; display:flex; flex-direction:column; gap:12px; max-height:340px; overflow:auto; padding-right:4px; }
+.wish-entry{ background:var(--c-paper); border-radius:10px; padding:14px 16px; text-align:left; box-shadow:0 10px 20px -14px rgba(58,46,34,.3); }
+.wish-entry .wname{ font-family:var(--f-display); font-size:17px; color:var(--c-maroon-deep); font-weight:600; }
+.wish-entry .wtext{ font-size:13px; color:var(--c-ink-soft); margin-top:4px; line-height:1.7; }
+.wish-entry .wtime{ font-size:10px; color:var(--c-gold-dark); margin-top:6px; letter-spacing:.05em; }
+.wish-empty{ font-size:12.5px; color:var(--c-ink-soft); opacity:.7; margin-top:20px; }
+
+/* ============================= CLOSING ============================= */
+#closing{ background:linear-gradient(180deg,var(--c-cream-deep),var(--c-maroon-deep)); color:var(--c-cream); }
+#closing .title-display{ color:var(--c-cream); }
+#closing .eyebrow{ color:var(--c-gold-light); }
+#closing .lead{ color:rgba(251,246,236,.78); }
+.closing-names{ font-family:var(--f-display); font-style:italic; font-size:32px; margin-top:18px; }
+.closing-families{ margin-top:26px; font-size:13px; color:rgba(251,246,236,.7); line-height:2; }
+.closing-foot{ margin-top:40px; font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(251,246,236,.45); }
+
+/* generic fallback placeholder box for broken images */
+.img-fallback{
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:8px; color:var(--c-gold-dark);
+  background:repeating-linear-gradient(135deg, rgba(184,147,90,.08) 0 10px, rgba(184,147,90,.03) 10px 20px);
+}
+.img-fallback svg{ width:26px; height:26px; opacity:.55; }
+.img-fallback span{ font-size:10px; letter-spacing:.06em; text-align:center; padding:0 10px; }
+
+
+/* ==================================================================
+   WAYANG + PREWEDDING SLIDER THEME OVERRIDES
+   - Existing invitation features remain intact.
+   - Hero uses up to 6 prewedding photos.
+   - Missing prewedding images are removed automatically.
+   ================================================================== */
+
+:root{
+  --page-bg:#f8efe4;
+  --page-bg-soft:#fff9f1;
+  --page-gold:#b69068;
+  --page-gold-soft:#d8bea4;
+
+  /* Hero palette sampled from the supplied prewedding photo:
+     cool white clothing + muted blue-grey + dark batik accents. */
+  --hero-paper:#f7fbfc;
+  --hero-paper-2:#edf5f7;
+  --hero-blue:#547c95;
+  --hero-blue-dark:#315d78;
+  --hero-blue-soft:#d7e8ee;
+  --hero-ink:#234356;
+}
+
+html,body{ background:var(--page-bg); }
+body{
+  min-height:100%;
+  background:
+    radial-gradient(circle at 14% 8%, rgba(255,255,255,.78) 0 12%, transparent 35%),
+    radial-gradient(circle at 88% 28%, rgba(214,184,158,.15) 0 10%, transparent 34%),
+    radial-gradient(circle at 22% 72%, rgba(232,201,186,.17) 0 12%, transparent 38%),
+    linear-gradient(180deg,#fffaf4 0%,#f8eee4 48%,#fff9f2 100%);
+}
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:.36;
+  background-image:
+    repeating-linear-gradient(132deg, rgba(157,119,82,.025) 0 1px, transparent 1px 28px),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.35), transparent 64%);
+}
+
+.section,
+#ayat,#couple,#events,#timeline,#gallery,#rsvp,#gift,#wishes,#closing{
+  background:transparent !important;
+}
+#closing{ color:var(--c-ink); }
+#closing .title-display{ color:var(--c-maroon-deep); }
+#closing .eyebrow{ color:var(--c-gold-dark); }
+#closing .lead{ color:var(--c-ink-soft); }
+#closing .closing-families{ color:var(--c-ink-soft); }
+#closing .closing-foot{ color:rgba(107,93,76,.62); }
+
+/* ============================= COVER ============================= */
+#cover{
+  min-height:100svh;
+  background:
+    radial-gradient(ellipse at 50% 12%, rgba(255,255,255,.95), transparent 42%),
+    radial-gradient(ellipse at 50% 100%, rgba(223,195,172,.22), transparent 48%),
+    linear-gradient(180deg,#fffaf4 0%,#f7ede2 100%);
+  overflow:hidden;
+}
+#cover::before,#cover::after{ content:none !important; }
+.cover-card{
+  z-index:4;
+  max-width:540px;
+  padding:58px 26px 46px;
+}
+.cover-photo-ring{ display:none !important; }
+.cover-eyebrow{
+  margin-bottom:16px;
+  color:#8e6d50;
+  letter-spacing:.2em;
+  font-size:12px;
+}
+.cover-names{
+  font-size:clamp(48px,13vw,74px);
+  line-height:.92;
+  color:#9a704d;
+  text-shadow:0 1px 0 rgba(255,255,255,.9);
+}
+.cover-amp{
+  display:inline;
+  font-size:.72em;
+  margin:0 .08em;
+  color:#b38a64;
+}
+.cover-date{
+  margin:28px auto 0;
+  width:max-content;
+  max-width:100%;
+  padding:10px 22px;
+  border-top:1px solid rgba(166,126,91,.32);
+  border-bottom:1px solid rgba(166,126,91,.32);
+  letter-spacing:.18em;
+  color:#7e6148;
+}
+.cover-to{
+  max-width:300px;
+  margin:30px auto 0;
+  padding-top:0;
+  border-top:0;
+  line-height:1.7;
+  color:#6e5845;
+  letter-spacing:.04em;
+}
+.cover-to b{
+  margin-top:5px;
+  color:#936b4a;
+  font-size:23px;
+}
+.btn-open{
+  margin-top:26px;
+  padding:14px 27px;
+  border-radius:8px;
+  background:linear-gradient(135deg,#b78d68,#9e7655);
+  box-shadow:0 13px 28px -13px rgba(105,69,42,.58);
+  letter-spacing:.08em;
+  text-transform:none;
+  font-size:13px;
+}
+
+.cover-wayang{
+  position:absolute;
+  top:50%;
+  width:min(36vw,410px);
+  height:min(74vh,740px);
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  background-size:contain;
+  opacity:.6;
+  filter:sepia(.18) saturate(.76) contrast(.94);
+  pointer-events:none;
+  z-index:2;
+  transform-origin:50% 92%;
+  will-change:transform;
+}
+.cover-wayang.left{
+  left:max(-5vw,-70px);
+  background-image:url('images/wayang-left.png');
+  animation:wayangSwayLeft 5.8s ease-in-out infinite;
+}
+.cover-wayang.right{
+  right:max(-5vw,-70px);
+  background-image:url('images/wayang-right.png');
+  animation:wayangSwayRight 6.2s ease-in-out infinite;
+}
+.cover-cloud{
+  position:absolute;
+  left:50%; bottom:-70px; transform:translateX(-50%);
+  width:120%; height:190px;
+  opacity:.34; z-index:1; pointer-events:none;
+  background:
+    radial-gradient(ellipse at 10% 70%, rgba(182,144,110,.22) 0 18%, transparent 19%),
+    radial-gradient(ellipse at 30% 52%, rgba(182,144,110,.16) 0 19%, transparent 20%),
+    radial-gradient(ellipse at 52% 68%, rgba(182,144,110,.18) 0 20%, transparent 21%),
+    radial-gradient(ellipse at 75% 50%, rgba(182,144,110,.15) 0 18%, transparent 19%),
+    radial-gradient(ellipse at 92% 70%, rgba(182,144,110,.2) 0 18%, transparent 19%);
+}
+@keyframes wayangSwayLeft{
+  0%,100%{ transform:translateY(-50%) rotate(-2deg) translateX(0); }
+  50%{ transform:translateY(calc(-50% - 8px)) rotate(2.2deg) translateX(5px); }
+}
+@keyframes wayangSwayRight{
+  0%,100%{ transform:translateY(-50%) rotate(2deg) translateX(0); }
+  50%{ transform:translateY(calc(-50% - 7px)) rotate(-2.2deg) translateX(-5px); }
+}
+
+/* ============================= PREWEDDING SLIDER ============================= */
+#greeting{
+  min-height:100svh;
+  padding:0 !important;
+  display:block;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 90%,rgba(183,215,226,.18),transparent 36%),
+    linear-gradient(180deg,var(--hero-paper) 0%,#fff 56%,var(--hero-paper-2) 100%) !important;
+}
+#greeting .section-inner{
+  width:100%;
+  max-width:none;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+
+.prewed-stage{
+  position:relative;
+  width:100%;
+  height:68svh;
+  min-height:470px;
+  overflow:hidden;
+  background:#d8e2e5;
+  isolation:isolate;
+  touch-action:pan-y;
+}
+.prewed-slider,
+.prewed-slide{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.prewed-slide{
+  opacity:0;
+  visibility:hidden;
+  transform:scale(1.035);
+  transition:opacity 1.15s ease, transform 7s ease, visibility 1.15s ease;
+  z-index:1;
+}
+.prewed-slide.active{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+  z-index:2;
+}
+.prewed-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 43%;
+  display:block;
+}
+
+/* Watercolor-style white haze around the photo, similar to the reference. */
+.prewed-stage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:4;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(249,253,253,.94) 0%,rgba(249,253,253,.35) 7%,transparent 18%),
+    linear-gradient(0deg,rgba(249,253,253,1) 0%,rgba(249,253,253,.88) 6%,rgba(249,253,253,.18) 15%,transparent 28%),
+    linear-gradient(90deg,rgba(249,253,253,.62) 0%,transparent 7%,transparent 93%,rgba(249,253,253,.62) 100%);
+}
+.prewed-stage::after{
+  content:"";
+  position:absolute;
+  z-index:4;
+  pointer-events:none;
+  left:-6%; right:-6%; bottom:-42px;
+  height:120px;
+  filter:blur(12px);
+  opacity:.9;
+  background:
+    radial-gradient(ellipse at 8% 44%,rgba(245, 225, 201, 0.96) 0 25%,transparent 26%),
+    radial-gradient(ellipse at 28% 68%,rgba(253, 251, 249, 0.98) 0 31%,transparent 32%),
+    radial-gradient(ellipse at 52% 42%,rgba(253, 251, 249, 0.96) 0 34%,transparent 35%),
+    radial-gradient(ellipse at 76% 70%,rgba(253, 251, 249, 0.98) 0 31%,transparent 32%),
+    radial-gradient(ellipse at 94% 44%,rgba(253, 251, 249, 0.96) 0 25%,transparent 26%);
+}
+
+.prewed-dots{
+  position:absolute;
+  z-index:6;
+  left:50%;
+  bottom:34px;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(33,61,76,.2);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+.prewed-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:rgba(255,255,255,.62);
+  transition:width .3s ease,background .3s ease;
+}
+.prewed-dot.active{
+  width:20px;
+  border-radius:999px;
+  background:#fff;
+}
+
+.prewed-info{
+  position:relative;
+  z-index:7;
+  flex:1;
+  min-height:32svh;
+  margin-top:-18px;
+  padding:44px 18px 38px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(232, 218, 201, 0.26),transparent 38%),
+    linear-gradient(180deg,rgba(253, 251, 249, 0.98),#fff 52%,rgba(247, 240, 232, 0.96));
+}
+.prewed-info::before,
+.prewed-info::after{
+  content:"";
+  position:absolute;
+  width:210px;
+  height:210px;
+  opacity:.08;
+  pointer-events:none;
+  background-repeat:no-repeat;
+  background-size:contain;
+  filter:grayscale(1) sepia(.18) hue-rotate(150deg) saturate(.8);
+}
+.prewed-info::before{
+  left:-74px;
+  bottom:-55px;
+  background-image:url('images/wayang-left.png');
+}
+.prewed-info::after{
+  right:-74px;
+  bottom:-55px;
+  background-image:url('images/wayang-right.png');
+}
+.prewed-names{
+  position:relative;
+  z-index:2;
+  font-family:var(--f-display);
+  font-style:italic;
+  font-weight:500;
+  font-size:clamp(42px,10vw,64px);
+  line-height:1;
+  color:var(--hero-blue-dark);
+  text-shadow:0 1px 0 #fff;
+  margin-bottom:28px;
+}
+.prewed-intro{
+  position:relative;
+  z-index:2;
+  max-width:600px;
+  margin:-13px auto 24px;
+  color:#806f5f;
+  font-size:clamp(11px,2.4vw,13px);
+  line-height:1.65;
+}
+
+.prewed-countdown{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+  width:min(92%,620px);
+  margin:0 auto;
+}
+.prewed-countdown > div{
+  min-width:0;
+  padding:21px 7px 17px;
+  border-radius:24px;
+  background:linear-gradient(155deg,#af8b5f,#9b7337);
+  box-shadow:0 16px 30px -18px rgba(116, 87, 36, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  color:#fff;
+}
+.prewed-countdown .num{
+  font-family:var(--f-body);
+  font-size:clamp(26px,6vw,36px);
+  line-height:1;
+  font-weight:400;
+  color:#fff;
+}
+.prewed-countdown .lbl{
+  margin-top:12px;
+  font-size:clamp(9px,2.4vw,12px);
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  color:#fff;
+}
+
+.hero-scroll{
+  position:absolute;
+  z-index:9;
+  left:50%; bottom:12px;
+  transform:translateX(-50%);
+  width:42px; height:42px;
+  border:1px solid rgba(49,93,120,.24);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--hero-blue-dark);
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 22px rgba(48,84,102,.14);
+  animation:bob 2.2s ease-in-out infinite;
+}
+
+/* ============================= SECTION WAYANG BOUNDARIES ============================= */
+.section:not(#greeting){ padding-top:128px; }
+.section:not(#greeting)::before,
+.section:not(#greeting)::after{
+  content:"";
+  position:absolute;
+  top:-18px;
+  width:118px;
+  height:210px;
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:contain;
+  opacity:.18;
+  pointer-events:none;
+  z-index:1;
+  filter:sepia(.25) saturate(.7);
+  transform-origin:50% 15%;
+}
+.section:not(#greeting)::before{
+  left:-24px;
+  background-image:url('images/wayang-left.png');
+  animation:dividerWayangLeft 7s ease-in-out infinite;
+}
+.section:not(#greeting)::after{
+  right:-24px;
+  background-image:url('images/wayang-right.png');
+  animation:dividerWayangRight 7.4s ease-in-out infinite;
+}
+@keyframes dividerWayangLeft{
+  0%,100%{ transform:rotate(-1.8deg) translateY(0); }
+  50%{ transform:rotate(2deg) translateY(4px); }
+}
+@keyframes dividerWayangRight{
+  0%,100%{ transform:rotate(1.8deg) translateY(0); }
+  50%{ transform:rotate(-2deg) translateY(4px); }
+}
+.section:not(#greeting) .section-inner::before{
+  content:"";
+  display:block;
+  width:86px;
+  height:1px;
+  margin:0 auto 40px;
+  background:linear-gradient(90deg,transparent,var(--page-gold),transparent);
+  opacity:.7;
+}
+
+/* ============================= AYAT ============================= */
+#ayat{ min-height:auto; padding-bottom:110px; }
+.ayat-frame{
+  padding:10px 0 0;
+  background:transparent;
+  box-shadow:none;
+  border-radius:0;
+}
+.ayat-frame::before,.ayat-frame::after{ content:none; }
+.ayat-heading{
+  font-family:var(--f-eyebrow);
+  color:#8f6b4d;
+  font-size:13px;
+  letter-spacing:.13em;
+  margin-bottom:28px;
+}
+.ayat-arabic-block{
+  padding:26px 18px;
+  border-top:1px solid rgba(176,139,103,.25);
+  border-bottom:1px solid rgba(176,139,103,.25);
+}
+.ayat-arabic{ color:#765238; line-height:2.05; }
+.ayat-translation-block{
+  max-width:500px;
+  margin:28px auto 0;
+  padding:0 10px;
+}
+.ayat-translation{ margin-top:0; color:#665345; }
+.ayat-source{ margin-top:18px; color:#977151; }
+.ayat-note{ display:none; }
+.parang-wash{ display:none; }
+
+@media (max-width:760px){
+  .cover-card{ padding-left:54px; padding-right:54px; }
+  .cover-wayang{ width:50vw; height:64vh; opacity:.5; }
+  .cover-wayang.left{ left:-14vw; }
+  .cover-wayang.right{ right:-14vw; }
+  .cover-names{ font-size:clamp(44px,14vw,64px); }
+  .cover-to{ margin-top:25px; }
+
+  .prewed-stage{ height:67svh; min-height:430px; }
+  .prewed-slide img{ object-position:center 42%; }
+  .prewed-info{ min-height:33svh; padding:38px 14px 50px; }
+  .prewed-names{ margin-bottom:24px; }
+  .prewed-countdown{ width:min(94%,560px); gap:8px; }
+  .prewed-countdown > div{ padding:18px 4px 15px; border-radius:19px; }
+  .prewed-countdown .lbl{ margin-top:9px; }
+
+  .section:not(#greeting){ padding-top:112px; }
+  .section:not(#greeting)::before,
+  .section:not(#greeting)::after{ width:96px; height:172px; opacity:.17; }
+  .section:not(#greeting)::before{ left:-26px; }
+  .section:not(#greeting)::after{ right:-26px; }
+}
+
+@media (max-width:420px){
+  .cover-card{ padding-left:44px; padding-right:44px; }
+  .cover-date{ padding-left:13px; padding-right:13px; font-size:12px; }
+
+  .prewed-stage{ height:65svh; min-height:410px; }
+  .prewed-info{ min-height:35svh; padding:34px 10px 54px; }
+  .prewed-names{ font-size:clamp(39px,12vw,52px); margin-bottom:22px; }
+  .prewed-intro{ padding:0 12px; }
+  .prewed-countdown{ gap:6px; width:96%; }
+  .prewed-countdown > div{ border-radius:16px; padding:16px 2px 14px; }
+  .prewed-countdown .num{ font-size:24px; }
+  .prewed-countdown .lbl{ font-size:8px; }
+  .prewed-dots{ bottom:29px; }
+}
+
+:root{
+  --invite-max:760px;
+  --ornament-paper:#fff8ef;
+}
+
+body{
+  background:#eadfD2;
+}
+
+.section{
+  width:min(100%,var(--invite-max));
+  margin-inline:auto;
+  /* min-height:100svh; */
+  background-color:var(--ornament-paper) !important;
+  background-image:url('images/layout-frame.png') !important;
+  background-repeat:no-repeat !important;
+  background-position:center top !important;
+  background-size:cover !important;
+}
+
+/* Existing theme overrides set some sections to transparent. Force the same
+   ornamental layout on every content section. */
+#greeting,#ayat,#couple,#events,#timeline,#gallery,#rsvp,#gift,#wishes,#closing{
+  background-color:var(--ornament-paper) !important;
+  background-image:url('images/layout-frame.png') !important;
+  background-repeat:no-repeat !important;
+  background-position:center top !important;
+  background-size:cover !important;
+}
+
+/* Do not repeat small wayang dividers on every section. */
+.section:not(#greeting)::before,
+.section:not(#greeting)::after{
+  content:none !important;
+  display:none !important;
+}
+.section:not(#greeting) .section-inner::before{
+  display:none !important;
+}
+
+/* Give content safe breathing room inside the ornamental frame. */
+.section:not(#greeting) .section-inner{
+  max-width:600px;
+  padding:34px 26px;
+}
+
+/* ============================= COVER ASSET COMPOSITION ============================= */
+#cover{
+  left:50%; right:auto;
+  width:min(100%,var(--invite-max));
+  transform:translateX(-50%);
+  background-color:var(--ornament-paper) !important;
+  background-image:url('images/layout-frame.png') !important;
+  background-repeat:no-repeat !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  isolation:isolate;
+}
+
+.cover-card{
+  z-index:8;
+  max-width:500px;
+  padding:60px 70px 50px;
+}
+
+.cover-wayang{
+  z-index:5;
+  top:auto;
+  bottom:5%;
+  width:43%;
+  height:67%;
+  opacity:.96;
+  filter:none;
+  transform-origin:50% 92%;
+}
+.cover-wayang.left{
+  left:-10%;
+  background-image:url('images/wayang-left.png');
+  animation:assetWayangLeft 5.8s ease-in-out infinite;
+}
+.cover-wayang.right{
+  right:-10%;
+  background-image:url('images/wayang-right.png');
+  animation:assetWayangRight 6.2s ease-in-out infinite;
+}
+
+@keyframes assetWayangLeft{
+  0%,100%{ transform:rotate(-1.1deg) translateY(0); }
+  50%{ transform:rotate(1.35deg) translateY(-5px); }
+}
+@keyframes assetWayangRight{
+  0%,100%{ transform:rotate(1.1deg) translateY(0); }
+  50%{ transform:rotate(-1.35deg) translateY(-5px); }
+}
+
+.cover-cloud{ display:none !important; }
+.cover-photo-ring{ display:none !important; }
+
+/* Decorative leaf/flower assets are separate DOM layers so they can move
+   independently during the opening transition. */
+.cover-foliage{
+  position:absolute;
+  z-index:4;
+  width:46%;
+  height:auto;
+  pointer-events:none;
+  user-select:none;
+  transform-origin:center;
+  will-change:transform,opacity,filter;
+}
+.cover-foliage.tl{ top:-7%; left:-9%; }
+.cover-foliage.tr{ top:-8%; right:-10%; transform:scaleX(-1); }
+.cover-foliage.bl{ bottom:-10%; left:-12%; }
+.cover-foliage.br{ bottom:-10%; right:-12%; transform:scaleX(-1); }
+
+/* Gust only when the button is clicked. */
+#cover.opening .cover-foliage.tl{ animation:leafGustTL .9s cubic-bezier(.2,.7,.2,1) forwards; }
+#cover.opening .cover-foliage.tr{ animation:leafGustTR .9s cubic-bezier(.2,.7,.2,1) forwards; }
+#cover.opening .cover-foliage.bl{ animation:leafGustBL .95s cubic-bezier(.2,.7,.2,1) forwards; }
+#cover.opening .cover-foliage.br{ animation:leafGustBR .95s cubic-bezier(.2,.7,.2,1) forwards; }
+
+@keyframes leafGustTL{
+  0%{ transform:translate(0,0) rotate(0deg) scale(1); opacity:1; filter:blur(0); }
+  100%{ transform:translate(-38%,-24%) rotate(-13deg) scale(1.08); opacity:0; filter:blur(2px); }
+}
+@keyframes leafGustTR{
+  0%{ transform:scaleX(-1) translate(0,0) rotate(0deg) scale(1); opacity:1; filter:blur(0); }
+  100%{ transform:scaleX(-1) translate(-38%,-24%) rotate(-13deg) scale(1.08); opacity:0; filter:blur(2px); }
+}
+@keyframes leafGustBL{
+  0%{ transform:translate(0,0) rotate(0deg) scale(1); opacity:1; filter:blur(0); }
+  100%{ transform:translate(-32%,28%) rotate(10deg) scale(1.06); opacity:0; filter:blur(2px); }
+}
+@keyframes leafGustBR{
+  0%{ transform:scaleX(-1) translate(0,0) rotate(0deg) scale(1); opacity:1; filter:blur(0); }
+  100%{ transform:scaleX(-1) translate(-32%,28%) rotate(10deg) scale(1.06); opacity:0; filter:blur(2px); }
+}
+
+#cover.opening .cover-card{
+  animation:coverContentLift .72s ease forwards;
+}
+@keyframes coverContentLift{
+  to{ opacity:0; transform:translateY(-16px) scale(.985); }
+}
+
+/* Keep text in the clean center area of the frame. */
+.cover-eyebrow{ color:#8c6c3c; }
+.cover-names{ color:#7b4c38; }
+.cover-date{ color:#7b5d47; }
+.btn-open{
+  position:relative;
+  z-index:10;
+  background:linear-gradient(135deg,#af865f,#855236);
+  border:1px solid rgba(239,211,171,.85);
+  box-shadow:0 14px 30px -14px rgba(89,53,30,.72), inset 0 0 0 3px rgba(255,247,235,.18);
+}
+
+/* Greeting keeps the existing photo slider, but the lower information block
+   becomes translucent so the same ornamental paper remains visible. */
+#greeting .prewed-info{
+  background:rgba(255,250,243,.88) !important;
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+}
+
+/* Remove decorative pseudo-wayang from the prewedding information. */
+.prewed-info::before,.prewed-info::after{ content:none !important; }
+
+@media (max-width:760px){
+  .cover-card{ padding:56px 70px 46px; }
+  .cover-wayang{ width:49%; height:63%; bottom:3%; }
+  .cover-wayang.left{ left:-17%; }
+  .cover-wayang.right{ right:-17%; }
+  .cover-foliage{ width:52%; }
+  .cover-foliage.tl{ top:-5%; left:-16%; }
+  .cover-foliage.tr{ top:-6%; right:-17%; }
+  .cover-foliage.bl{ bottom:-8%; left:-18%; }
+  .cover-foliage.br{ bottom:-8%; right:-18%; }
+  .section:not(#greeting) .section-inner{ padding:28px 34px; }
+}
+
+@media (max-width:430px){
+  .cover-card{ padding-left:58px; padding-right:58px; }
+  .cover-wayang{ width:55%; height:60%; opacity:.95; }
+  .cover-wayang.left{ left:-23%; }
+  .cover-wayang.right{ right:-23%; }
+  .cover-foliage{ width:58%; }
+  .section:not(#greeting) .section-inner{ padding:24px 32px; }
+}
+
+
+/* ==================================================================
+   RESPONSIVE PORTRAIT CANVAS FIX
+   - Desktop mengikuti tinggi viewport, jadi tidak perlu zoom 70%.
+   - Frame tidak terpotong di sisi atas/bawah/kiri/kanan.
+   - Mobile tetap full-width.
+   ================================================================== */
+:root{
+  --invite-max: 760px;
+  --invite-desktop-width: min(760px, calc(100svh * 0.60));
+}
+
+/* Outer area */
+html,
+body{
+  min-height:100%;
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255,255,255,.42), transparent 32%),
+    linear-gradient(180deg,#eee3d5 0%,#e4d7c8 100%);
+}
+
+/* Portrait invitation canvas */
+.section{
+  width:min(100vw, var(--invite-desktop-width)) !important;
+  min-height:100svh;
+  margin-inline:auto;
+  background-size:100% 100% !important;
+  background-position:center center !important;
+  box-shadow:
+    0 0 0 1px rgba(118,84,55,.06),
+    0 22px 70px rgba(73,51,34,.14);
+}
+
+#greeting,
+#ayat,
+#couple,
+#events,
+#timeline,
+#gallery,
+#rsvp,
+#gift,
+#wishes,
+#closing{
+  width:min(100vw, var(--invite-desktop-width)) !important;
+  background-size:100% 100% !important;
+  background-position:center center !important;
+}
+
+/* Cover follows viewport height rather than a fixed 760px desktop width */
+#cover{
+  width:min(100vw, var(--invite-desktop-width)) !important;
+  height:100svh;
+  min-height:100svh;
+  max-height:100svh;
+  background-size:100% 100% !important;
+  background-position:center center !important;
+  box-shadow:
+    0 0 0 1px rgba(118,84,55,.08),
+    0 20px 70px rgba(73,51,34,.18);
+}
+
+/* Make the center content comfortably fit at browser zoom 100% */
+.cover-card{
+  width:100%;
+  max-width:min(76%, 460px);
+  padding:clamp(24px,4svh,48px) 24px;
+}
+
+.cover-eyebrow{
+  font-size:clamp(9px,1.05svh,12px);
+  margin-bottom:clamp(8px,1.5svh,16px);
+}
+
+.cover-names{
+  font-size:clamp(38px,5.7svh,64px);
+  line-height:.96;
+}
+
+.cover-date{
+  margin-top:clamp(14px,2.2svh,24px);
+  padding:clamp(7px,1svh,10px) 18px;
+  font-size:clamp(11px,1.25svh,14px);
+}
+
+.cover-to{
+  margin-top:clamp(16px,2.4svh,28px);
+  font-size:clamp(10px,1.1svh,12px);
+  line-height:1.55;
+}
+
+.cover-to b{
+  margin-top:4px;
+  font-size:clamp(17px,2.1svh,23px);
+  line-height:1.2;
+}
+
+.btn-open{
+  margin-top:clamp(16px,2.4svh,26px);
+  padding:clamp(10px,1.3svh,14px) 24px;
+  font-size:clamp(11px,1.2svh,13px);
+}
+
+/* Keep wayang safely inside the ornamental side area */
+.cover-wayang{
+  bottom:2.5%;
+  width:41%;
+  height:58%;
+}
+
+.cover-wayang.left{ left:-8%; }
+.cover-wayang.right{ right:-8%; }
+
+/* Foliage stays on the edge instead of covering center content */
+.cover-foliage{
+  width:40%;
+}
+
+.cover-foliage.tl{ top:-4%; left:-8%; }
+.cover-foliage.tr{ top:-4%; right:-8%; }
+.cover-foliage.bl{ bottom:-7%; left:-9%; }
+.cover-foliage.br{ bottom:-7%; right:-9%; }
+
+/* Keep inner sections away from the ornate borders */
+.section:not(#greeting){
+  padding-left:clamp(18px,3vw,30px);
+  padding-right:clamp(18px,3vw,30px);
+}
+
+.section:not(#greeting) .section-inner{
+  width:100%;
+  max-width:calc(100% - clamp(30px,6vw,64px));
+  padding:clamp(22px,3.5vw,34px) clamp(14px,2.5vw,26px);
+}
+
+/* Desktop canvas should remain visually centered */
+@media (min-width:761px){
+  body{
+    display:block;
+  }
+
+  #navdots{
+    right:max(18px, calc((100vw - var(--invite-desktop-width)) / 2 - 34px));
+  }
+}
+
+/* Tablet/mobile: use the full screen width and preserve the frame */
+@media (max-width:760px){
+  :root{
+    --invite-desktop-width:100vw;
+  }
+
+  body{
+    background:var(--ornament-paper);
+  }
+
+  .section,
+  #greeting,
+  #ayat,
+  #couple,
+  #events,
+  #timeline,
+  #gallery,
+  #rsvp,
+  #gift,
+  #wishes,
+  #closing,
+  #cover{
+    width:100vw !important;
+    max-width:none !important;
+    box-shadow:none;
+  }
+
+  #cover{
+    height:100svh;
+    min-height:100svh;
+    max-height:none;
+  }
+
+  .cover-card{
+    max-width:72%;
+    padding:30px 10px;
+  }
+
+  .cover-wayang{
+    width:48%;
+    height:55%;
+    bottom:1%;
+  }
+
+  .cover-wayang.left{ left:-15%; }
+  .cover-wayang.right{ right:-15%; }
+
+  .cover-foliage{
+    width:46%;
+  }
+
+  .section:not(#greeting) .section-inner{
+    max-width:calc(100% - 42px);
+    padding:24px 14px;
+  }
+}
+
+@media (max-width:430px){
+  .cover-card{
+    max-width:74%;
+    padding:24px 6px;
+  }
+
+  .cover-names{
+    font-size:clamp(38px,12vw,52px);
+  }
+
+  .cover-wayang{
+    width:54%;
+    height:52%;
+  }
+
+  .cover-wayang.left{ left:-22%; }
+  .cover-wayang.right{ right:-22%; }
+
+  .cover-foliage{
+    width:52%;
+  }
+
+  .section:not(#greeting) .section-inner{
+    max-width:calc(100% - 30px);
+    padding:20px 10px;
+  }
+}
+
+
+
+/* ==================================================================
+   FINAL RESPONSIVE ASSET IMPLEMENTATION
+   Assets baru:
+   - images/cover-frame.png
+   - images/couple-frame-left.png
+   - images/couple-frame-right.png
+   Wayang tetap terpisah agar animasi tidak menyatu dengan background.
+   ================================================================== */
+:root{
+  --invite-max-width:760px;
+  --invite-portrait-width:min(var(--invite-max-width), calc(100svh * .68));
+  /* Safe area dibuat lebih dalam dari garis vertikal frame. */
+  --section-gutter:clamp(46px,8.25vw,64px);
+  --section-top-space:clamp(118px,16svh,154px);
+  --section-bottom-space:clamp(82px,10.5svh,116px);
+}
+
+html,body{
+  min-height:100%;
+  background:#e9ded0;
+}
+
+body{
+  display:block;
+  overflow-x:hidden;
+}
+
+/* Satu kanvas undangan di desktop, full width di mobile. */
+.section,
+#greeting,#ayat,#couple,#events,#timeline,#gallery,#rsvp,#gift,#wishes,#closing{
+  width:min(100vw,var(--invite-portrait-width)) !important;
+  max-width:var(--invite-max-width);
+  margin-inline:auto;
+}
+
+/* Semua section konten memakai frame lama/layout-frame, tetapi spacing
+   sekarang hanya dikontrol dari section, tidak didobel oleh section-inner. */
+
+
+.section:not(#greeting) .section-inner{
+  width:100%;
+  max-width:600px !important;
+  padding:0 !important;
+  margin:0 auto;
+}
+
+/* Section dengan konten panjang tidak dipaksa setinggi viewport sehingga
+   tidak menimbulkan ruang kosong besar di atas/bawah. */
+#events,#timeline,#gallery,#rsvp,#gift,#wishes{
+  min-height:auto !important;
+}
+
+/* ----------------------------- COVER ----------------------------- */
+#cover{
+  left:50% !important;
+  right:auto !important;
+  top:0;
+  width:min(100vw,var(--invite-portrait-width)) !important;
+  max-width:var(--invite-max-width);
+  height:100dvh !important;
+  min-height:100svh !important;
+  max-height:none !important;
+  transform:translateX(-50%);
+  overflow:hidden;
+  isolation:isolate;
+  background-color:#fff8ef !important;
+  background-image:url('images/cover-frame.png') !important;
+  background-repeat:no-repeat !important;
+  background-position:center center !important;
+  background-size:100% 100% !important;
+  box-shadow:0 18px 60px rgba(68,49,34,.15);
+}
+
+/* Ornamen bunga sudah ada di cover-frame.png, jadi layer foliage lama
+   harus dimatikan agar tidak dobel. */
+.cover-foliage,
+.cover-cloud{
+  display:none !important;
+}
+
+.cover-card{
+  position:absolute;
+  z-index:8;
+  left:50%;
+  top:45.5%;
+  transform:translate(-50%,-50%);
+  width:min(72%,440px);
+  max-width:none;
+  padding:0 !important;
+  text-align:center;
+}
+
+.cover-eyebrow{
+  margin-bottom:clamp(10px,1.5svh,16px);
+  font-size:clamp(9px,1.15svh,12px);
+  line-height:1.2;
+  letter-spacing:.29em;
+  color:#775b45;
+}
+
+.cover-names{
+  font-size:clamp(40px,6.2svh,62px) !important;
+  line-height:.96;
+  color:#6f2f33 !important;
+  white-space:nowrap;
+  text-shadow:none;
+}
+
+.cover-amp{
+  display:inline !important;
+  margin:0 .08em !important;
+  font-size:.72em !important;
+  color:#b58346 !important;
+}
+
+.cover-date{
+  width:min(86%,310px);
+  margin:clamp(15px,2svh,22px) auto 0 !important;
+  padding:clamp(7px,.95svh,10px) 12px !important;
+  font-size:clamp(11px,1.25svh,14px) !important;
+  line-height:1;
+  border-top:1px solid rgba(181,131,70,.45) !important;
+  border-bottom:1px solid rgba(181,131,70,.45) !important;
+  color:#5f4a3a !important;
+}
+
+.cover-to{
+  width:min(100%,320px);
+  margin:clamp(18px,2.3svh,26px) auto 0 !important;
+  padding:0 !important;
+  border:0 !important;
+  font-family:var(--f-display);
+  font-size:clamp(12px,1.4svh,15px) !important;
+  line-height:1.45 !important;
+  letter-spacing:0 !important;
+  color:#59483b !important;
+}
+
+.cover-to b{
+  margin-top:clamp(7px,1svh,10px) !important;
+  font-size:clamp(20px,2.55svh,27px) !important;
+  line-height:1.12;
+  color:#6f2f33 !important;
+}
+
+.btn-open{
+  margin-top:clamp(18px,2.2svh,25px) !important;
+  padding:clamp(11px,1.3svh,14px) clamp(22px,3svh,30px) !important;
+  border-radius:9px !important;
+  font-family:var(--f-display);
+  font-size:clamp(13px,1.55svh,16px) !important;
+  line-height:1;
+  letter-spacing:.01em !important;
+  color:#fffaf1;
+  background:linear-gradient(180deg,#ad753c,#8c572b) !important;
+  border:1px solid rgba(238,205,158,.9) !important;
+  box-shadow:0 10px 20px rgba(89,53,30,.28), inset 0 0 0 2px rgba(255,247,235,.14) !important;
+}
+
+/* Wayang dipertahankan sebagai asset terpisah untuk animasi. */
+.cover-wayang{
+  z-index:6 !important;
+  top:auto !important;
+  bottom:1.2% !important;
+  width:39% !important;
+  height:51% !important;
+  opacity:1 !important;
+  filter:none !important;
+  background-position:center bottom !important;
+  background-size:contain !important;
+}
+
+.cover-wayang.left{
+  left:-5.5% !important;
+  animation:assetWayangLeft 5.8s ease-in-out infinite !important;
+}
+.cover-wayang.right{
+  right:-5.5% !important;
+  animation:assetWayangRight 6.2s ease-in-out infinite !important;
+}
+
+/* ----------------------------- GREETING ----------------------------- */
+#greeting{
+  min-height:100svh;
+  background-size:100% 100% !important;
+  box-shadow:0 18px 60px rgba(68,49,34,.10);
+}
+
+/* ----------------------------- COUPLE ----------------------------- */
+#couple{
+  padding-top:clamp(112px,15svh,146px) !important;
+  padding-bottom:clamp(82px,11svh,112px) !important;
+}
+
+#couple .section-inner{
+  max-width:660px !important;
+}
+
+#couple .title-display{
+  margin-bottom:clamp(26px,4svh,42px) !important;
+}
+
+.couple-grid{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:start;
+  gap:clamp(10px,2.2vw,22px) !important;
+  width:100%;
+  margin-top:0 !important;
+}
+
+.couple-card{
+  min-width:0;
+}
+
+.couple-photo{
+  position:relative;
+  width:min(100%,240px) !important;
+  height:auto !important;
+  aspect-ratio:1/1;
+  margin:0 auto clamp(8px,1.8svh,16px) !important;
+  overflow:visible !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+
+/* Foto ditempatkan di lubang lingkaran frame. Nilai kiri berbeda karena
+   komposisi bunga frame kiri/kanan tidak simetris. */
+.couple-photo img{
+  position:absolute;
+  z-index:1;
+  width:66% !important;
+  height:66% !important;
+  top:12.5%;
+  object-fit:cover;
+  object-position:center;
+  border-radius:50% !important;
+  box-shadow:0 8px 24px rgba(73,50,31,.14);
+}
+
+.couple-card:first-child .couple-photo img{ left:23%; }
+.couple-card:last-child .couple-photo img{ left:11%; }
+
+.couple-photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+}
+
+.couple-card:first-child .couple-photo::after{
+  background-image:url('images/couple-frame-left.png');
+}
+.couple-card:last-child .couple-photo::after{
+  background-image:url('images/couple-frame-right.png');
+}
+
+.couple-and{
+  align-self:center !important;
+  margin-top:clamp(72px,10svh,104px);
+  font-size:clamp(30px,4vw,40px) !important;
+}
+
+.couple-order{
+  margin-top:0 !important;
+  font-family:var(--f-display);
+  font-size:clamp(13px,1.6vw,16px) !important;
+  color:#665044;
+}
+
+.couple-name{
+  margin-top:4px;
+  font-size:clamp(23px,3.3vw,31px) !important;
+  line-height:1.05;
+}
+
+.couple-parents{
+  margin-top:9px !important;
+  font-family:var(--f-display);
+  font-size:clamp(13px,1.7vw,16px) !important;
+  line-height:1.5 !important;
+}
+
+.couple-ig{
+  margin-top:12px !important;
+  padding:7px 14px !important;
+  font-size:11px !important;
+}
+
+/* ----------------------------- EVENTS ----------------------------- */
+#events{
+  padding-top:clamp(122px,16svh,154px) !important;
+  padding-bottom:clamp(84px,11svh,116px) !important;
+}
+
+#events .eyebrow{
+  margin-bottom:12px;
+}
+
+#events .title-display{
+  margin-bottom:clamp(24px,3.5svh,34px) !important;
+}
+
+.event-card{
+  width:100%;
+  margin:0 0 clamp(18px,2.6svh,26px) !important;
+  padding:clamp(22px,3vw,28px) !important;
+  border-radius:12px !important;
+  box-shadow:0 14px 28px -18px rgba(65,45,31,.28) !important;
+}
+
+.event-name{
+  font-size:clamp(22px,3.4vw,28px) !important;
+  line-height:1.1;
+}
+
+.event-row{
+  gap:11px !important;
+  margin-top:12px !important;
+  font-size:clamp(12px,1.7vw,14px) !important;
+  line-height:1.55;
+}
+
+.btn-map{
+  margin-top:16px !important;
+  padding:10px 18px !important;
+}
+
+.map-embed-title{
+  margin-top:clamp(26px,4svh,38px) !important;
+}
+
+/* ----------------------------- OTHER SECTIONS ----------------------------- */
+#ayat,#timeline,#gallery,#rsvp,#gift,#wishes,#closing{
+  padding-top:clamp(112px,15svh,146px) !important;
+  padding-bottom:clamp(78px,10svh,108px) !important;
+}
+
+/* Desktop: kanvas tetap proporsional dan berada di tengah. */
+@media (min-width:761px){
+  #navdots{
+    right:max(18px,calc((100vw - var(--invite-portrait-width))/2 - 34px));
+  }
+}
+
+/* Tablet/mobile: full-width. Margin aman berasal dari gutter section,
+   bukan dari padding tambahan section-inner. */
+@media (max-width:760px){
+  :root{
+    --invite-portrait-width:100vw;
+    /* Pada tablet/mobile content tidak boleh menyentuh rail frame kiri/kanan. */
+    --section-gutter:clamp(40px,10vw,56px);
+    --section-top-space:clamp(116px,16svh,146px);
+    --section-bottom-space:clamp(76px,9.5svh,102px);
+  }
+
+  body{ background:var(--ornament-paper); }
+
+  .section,
+  #greeting,#ayat,#couple,#events,#timeline,#gallery,#rsvp,#gift,#wishes,#closing,
+  #cover{
+    width:100vw !important;
+    max-width:none !important;
+    box-shadow:none !important;
+  }
+
+  #cover{
+    height:100dvh !important;
+    min-height:100svh !important;
+  }
+
+  .cover-card{
+    top:44.5%;
+    width:70%;
+  }
+
+  .cover-wayang{
+    width:43% !important;
+    height:46% !important;
+    bottom:1% !important;
+  }
+  .cover-wayang.left{ left:-8% !important; }
+  .cover-wayang.right{ right:-8% !important; }
+
+  .section:not(#greeting) .section-inner{
+    max-width:100% !important;
+  }
+
+  .event-card{
+    padding:22px 20px !important;
+  }
+
+  .event-row svg{
+    width:16px;
+    height:16px;
+  }
+}
+
+/* Pada mobile sempit, desain mempelai menjadi vertikal seperti referensi
+   ponsel agar frame tidak dipaksa terlalu kecil. */
+@media (max-width:560px){
+  .couple-grid{
+    grid-template-columns:1fr !important;
+    gap:0 !important;
+  }
+
+  .couple-photo{
+    width:min(100%,250px) !important;
+  }
+
+  .couple-and{
+    margin:18px 0 20px !important;
+    align-self:center !important;
+  }
+
+  .couple-card + .couple-card{
+    margin-top:0;
+  }
+
+  .couple-name{
+    font-size:clamp(25px,8vw,32px) !important;
+  }
+
+  .couple-parents{
+    font-size:14px !important;
+  }
+}
+
+@media (max-width:430px){
+  :root{
+    --section-gutter:clamp(36px,10vw,46px);
+    --section-top-space:clamp(108px,14.5svh,136px);
+    --section-bottom-space:clamp(72px,9svh,92px);
+  }
+
+  .cover-card{
+    top:43.8%;
+    width:72%;
+  }
+
+  .cover-names{
+    font-size:clamp(38px,11.5vw,50px) !important;
+  }
+
+  .cover-wayang{
+    width:46% !important;
+    height:43% !important;
+  }
+  .cover-wayang.left{ left:-11% !important; }
+  .cover-wayang.right{ right:-11% !important; }
+
+  #events{
+    padding-top:clamp(112px,15svh,138px) !important;
+  }
+
+  .event-card{
+    padding:20px 18px !important;
+  }
+
+  .event-name{
+    font-size:24px !important;
+  }
+
+  .event-row{
+    font-size:12.5px !important;
+  }
+
+  .btn-map{
+    padding:9px 16px !important;
+  }
+}
+
+/* ==================================================================
+   FRAME SAFE AREA GUARD
+   Menjaga seluruh konten mulai section mempelai sampai closing tetap
+   berada di dalam garis vertikal frame pada semua ukuran layar.
+   ================================================================== */
+#couple,#events,#timeline,#gallery,#rsvp,#gift,#wishes,#closing{
+  padding-left:var(--section-gutter) !important;
+  padding-right:var(--section-gutter) !important;
+}
+
+#couple .section-inner,
+#events .section-inner,
+#timeline .section-inner,
+#gallery .section-inner,
+#rsvp .section-inner,
+#gift .section-inner,
+#wishes .section-inner,
+#closing .section-inner{
+  width:100% !important;
+  max-width:100% !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Elemen lebar tidak boleh keluar dari safe area walaupun punya ukuran
+   atau max-width lama di rule sebelumnya. */
+#couple .couple-grid,
+#events .event-card,
+#events .map-embed,
+#timeline .timeline,
+#gallery .gallery-grid,
+#rsvp .rsvp-card,
+#gift .bank-card,
+#gift .gift-confirm-card,
+#gift .physical-gift-grid,
+#wishes .wish-form,
+#wishes .wish-list{
+  max-width:100% !important;
+}
+
+@media (max-width:560px){
+  #couple .couple-photo{
+    width:min(100%,250px) !important;
+  }
+
+  #couple .couple-card{
+    width:100%;
+    max-width:100%;
+  }
+}
+
+@media (max-width:380px){
+  :root{
+    --section-gutter:34px;
+  }
+
+  .event-card{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+}
+
+
+
+/* ==================================================================
+   UI/UX FRAME LAYOUT SYSTEM — FINAL
+   ------------------------------------------------------------------
+   Prinsip:
+   1. Frame tidak lagi di-stretch mengikuti tinggi section.
+   2. Ornament atas / rail tengah / ornament bawah dipisahkan.
+   3. Seluruh content sejak "Kedua Mempelai" memakai safe-area yang
+      dihitung dari posisi rail frame, bukan margin acak per breakpoint.
+   4. Shadow/card tidak boleh menabrak rail dekoratif.
+   ================================================================== */
+:root{
+  --frame-safe-x: clamp(40px, 9.25%, 70px);
+  --frame-safe-top: clamp(96px, 20%, 150px);
+  --frame-safe-bottom: clamp(122px, 29%, 210px);
+  --frame-content-max: 620px;
+}
+
+/* Preserve the original illustration ratio for long sections.
+   top + middle repeat + bottom prevents the frame from becoming stretched. */
+#couple,
+#events,
+#timeline,
+#gallery,
+#rsvp,
+#gift,
+#wishes,
+#closing{
+  position:relative;
+  width:min(100vw,var(--invite-portrait-width)) !important;
+  margin-inline:auto !important;
+  padding:
+    var(--frame-safe-top)
+    var(--frame-safe-x)
+    var(--frame-safe-bottom) !important;
+  background-color:#fff8ef !important;
+  background-image:
+    url('images/frame-top.png'),
+    url('images/frame-bottom.png'),
+    url('images/frame-mid.png') !important;
+  background-position:
+    center top,
+    center bottom,
+    center top !important;
+  background-size:
+    100% auto,
+    100% auto,
+    100% auto !important;
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    repeat-y !important;
+  overflow:hidden !important;
+  justify-content:flex-start !important;
+  text-align:center;
+}
+
+/* Short editorial sections need enough vertical canvas so top and bottom
+   ornaments never collide. Long content sections expand naturally. */
+#couple,
+#rsvp,
+#wishes,
+#closing{
+  min-height:100svh !important;
+}
+
+#events,
+#timeline,
+#gallery,
+#gift{
+  min-height:auto !important;
+}
+
+#couple .section-inner,
+#events .section-inner,
+#timeline .section-inner,
+#gallery .section-inner,
+#rsvp .section-inner,
+#gift .section-inner,
+#wishes .section-inner,
+#closing .section-inner{
+  width:100% !important;
+  max-width:var(--frame-content-max) !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  position:relative;
+  z-index:2;
+}
+
+/* Headings stay in the clean centre of the arch and do not touch its slope. */
+#couple .section-inner > .eyebrow,
+#events .section-inner > .eyebrow,
+#timeline .section-inner > .eyebrow,
+#gallery .section-inner > .eyebrow,
+#rsvp .section-inner > .eyebrow,
+#gift .section-inner > .eyebrow,
+#wishes .section-inner > .eyebrow,
+#closing .section-inner > .eyebrow,
+#couple .section-inner > .title-display,
+#events .section-inner > .title-display,
+#timeline .section-inner > .title-display,
+#gallery .section-inner > .title-display,
+#rsvp .section-inner > .title-display,
+#gift .section-inner > .title-display,
+#wishes .section-inner > .title-display{
+  width:min(100%, 440px);
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Cards/components must stay inside the optical safe area. */
+#events .event-card,
+#events .map-embed,
+#timeline .timeline,
+#gallery .gallery-grid,
+#rsvp .rsvp-card,
+#gift .bank-card,
+#gift .gift-confirm-card,
+#gift .physical-gift-grid,
+#wishes .wish-form,
+#wishes .wish-list{
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box;
+}
+
+/* Shadows are intentionally vertical/soft. Wide horizontal shadows make a
+   card appear to cross the frame even if its box is technically inside it. */
+.event-card,
+.rsvp-card,
+.gift-confirm-card,
+.bank-card,
+.map-embed,
+.t-photo,
+.g-item,
+.wish-entry{
+  box-shadow:0 14px 28px -20px rgba(58,46,34,.32) !important;
+}
+
+/* COUPLE — keep the decorative floral frame away from both rails. */
+#couple{
+  padding-top:clamp(104px, 21%, 156px) !important;
+}
+
+#couple .title-display{
+  margin-bottom:clamp(24px, 5%, 38px) !important;
+}
+
+#couple .couple-grid{
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 auto !important;
+}
+
+#couple .couple-card{
+  min-width:0;
+  max-width:100%;
+}
+
+#couple .couple-photo{
+  width:min(100%, 224px) !important;
+}
+
+/* EVENTS — first card begins after the sloping part of the arch. */
+#events{
+  padding-top:clamp(106px, 21.5%, 160px) !important;
+}
+
+#events .title-display{
+  margin-bottom:clamp(30px, 6.5%, 46px) !important;
+}
+
+#events .event-card{
+  margin-bottom:20px !important;
+  border-radius:14px !important;
+  padding:clamp(20px, 4.5%, 28px) !important;
+}
+
+#events .map-embed{
+  border-radius:14px !important;
+}
+
+/* Timeline has an internal left rail; leave enough room without reducing
+   the global frame-safe margin. */
+#timeline .timeline{
+  padding-right:2px;
+}
+
+#timeline .t-item{
+  padding-left:50px !important;
+}
+
+/* Gallery/RSVP/Gift/Wishes — consistent inner rhythm. */
+#gallery .gallery-intro,
+#rsvp .rsvp-intro,
+#gift .gift-intro{
+  width:min(100%, 470px);
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+#rsvp .rsvp-card,
+#gift .gift-confirm-card{
+  border-radius:16px !important;
+}
+
+/* Closing is intentionally more spacious and vertically balanced. */
+#closing{
+  display:flex;
+  justify-content:center !important;
+  padding-top:clamp(126px, 26%, 190px) !important;
+  padding-bottom:clamp(150px, 31%, 224px) !important;
+}
+
+#closing .section-inner{
+  align-self:center;
+  max-width:520px !important;
+}
+
+/* Tablet/mobile optical corrections. */
+@media (max-width:760px){
+  :root{
+    --frame-safe-x: max(38px, 9.5%);
+    --frame-safe-top: max(96px, 21%);
+    --frame-safe-bottom: max(122px, 29%);
+  }
+
+  #couple,
+  #events,
+  #timeline,
+  #gallery,
+  #rsvp,
+  #gift,
+  #wishes,
+  #closing{
+    width:100vw !important;
+    max-width:none !important;
+    box-shadow:none !important;
+  }
+
+  #couple .couple-photo{
+    width:min(100%, 236px) !important;
+  }
+
+  #events .event-row{
+    line-height:1.6 !important;
+  }
+}
+
+@media (max-width:560px){
+  /* A single column is the correct mobile composition; two columns force
+     the floral photo ornaments into the frame rails. */
+  #couple .couple-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:0 !important;
+  }
+
+  #couple .couple-card{
+    width:100% !important;
+  }
+
+  #couple .couple-photo{
+    width:min(100%, 230px) !important;
+  }
+
+  #couple .couple-and{
+    margin:22px auto !important;
+  }
+
+  #couple .couple-card:last-child{
+    margin-top:0 !important;
+  }
+
+  .physical-gift-grid{
+    grid-template-columns:1fr !important;
+  }
+}
+
+@media (max-width:430px){
+  :root{
+    --frame-safe-x: max(38px, 9.25%);
+    --frame-safe-top: max(94px, 21%);
+    --frame-safe-bottom: max(118px, 29%);
+  }
+
+  #couple,
+  #events,
+  #timeline,
+  #gallery,
+  #rsvp,
+  #gift,
+  #wishes,
+  #closing{
+    /* Ensure cards never visually sit on the 4–6% side rails. */
+    padding-left:var(--frame-safe-x) !important;
+    padding-right:var(--frame-safe-x) !important;
+  }
+
+  #events .event-card,
+  #rsvp .rsvp-card,
+  #gift .gift-confirm-card{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+
+  #timeline .t-item{
+    padding-left:46px !important;
+  }
+
+  .gallery-grid{
+    column-gap:8px !important;
+  }
+}
+
+@media (max-width:380px){
+  :root{
+    --frame-safe-x:36px;
+  }
+
+  #couple .couple-photo{
+    width:min(100%, 218px) !important;
+  }
+
+  #events .event-card,
+  #rsvp .rsvp-card,
+  #gift .gift-confirm-card{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+}
+
+
+
+/* ==================================================================
+   COUPLE MOBILE — AYAT-PROPORTION FIX
+   ------------------------------------------------------------------
+   Goal:
+   - Match the visual proportion of the Ar-Rum section on mobile.
+   - Compress the couple top ornament so it does not feel vertically long.
+   - Move the heading into the clean central area below the arch ornament.
+   - Reserve a real bottom safe-area equal to the bottom ornament height,
+     so the groom content never collides with or gets visually cut by it.
+   - Desktop/tablet layout remains unchanged.
+   ================================================================== */
+@media (max-width:560px){
+  #couple{
+    --couple-frame-top-h: clamp(194px, 46vw, 238px);
+    --couple-frame-bottom-h: clamp(194px, 46vw, 258px);
+
+    min-height:auto !important;
+    padding-top:clamp(158px, 38vw, 182px) !important;
+    padding-bottom:calc(var(--couple-frame-bottom-h) + 34px) !important;
+
+    /* Same three-part frame system, but with an intentionally compressed
+       top illustration to match the optical proportion of the Ayat layout. */
+    background-size:
+      100% var(--couple-frame-top-h),
+      100% var(--couple-frame-bottom-h),
+      100% auto !important;
+    background-position:
+      center top,
+      center bottom,
+      center var(--couple-frame-top-h) !important;
+    background-repeat:
+      no-repeat,
+      no-repeat,
+      repeat-y !important;
+  }
+
+  #couple .section-inner{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 auto !important;
+    padding:0 !important;
+  }
+
+  /* Heading rhythm follows the Ayat section: small eyebrow, clear breathing
+     space, then the display title. It no longer sits on the arch line. */
+  #couple .eyebrow{
+    width:100% !important;
+    margin:0 auto 10px !important;
+    font-size:11px !important;
+    line-height:1.35 !important;
+    letter-spacing:.28em !important;
+  }
+
+  #couple .title-display{
+    width:100% !important;
+    margin:0 auto 34px !important;
+    font-size:clamp(30px, 8.2vw, 36px) !important;
+    line-height:1.05 !important;
+  }
+
+  #couple .couple-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    width:100% !important;
+    max-width:100% !important;
+    gap:0 !important;
+    margin:0 auto !important;
+  }
+
+  #couple .couple-card{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  /* Slightly tighter than the previous 230–236px composition so the floral
+     ornament stays comfortably inside the frame rails. */
+  #couple .couple-photo{
+    width:min(100%, 218px) !important;
+    margin:0 auto 18px !important;
+  }
+
+  #couple .couple-order{
+    margin-top:0 !important;
+    font-size:14px !important;
+    line-height:1.3 !important;
+  }
+
+  #couple .couple-name{
+    margin-top:5px !important;
+    font-size:clamp(27px, 7.8vw, 32px) !important;
+    line-height:1.04 !important;
+  }
+
+  #couple .couple-parents{
+    margin-top:10px !important;
+    font-size:14px !important;
+    line-height:1.55 !important;
+  }
+
+  #couple .couple-ig{
+    margin-top:14px !important;
+    padding:8px 15px !important;
+    font-size:11px !important;
+  }
+
+  #couple .couple-and{
+    margin:32px auto 34px !important;
+    font-size:34px !important;
+    line-height:1 !important;
+    align-self:center !important;
+  }
+
+  /* The last interactive element must finish before the bottom ornament
+     starts. The section padding handles the large reserve; this extra margin
+     gives the groom card a clean visual stop. */
+  #couple .couple-card:last-child .couple-ig{
+    margin-bottom:0 !important;
+  }
+}
+
+@media (max-width:430px){
+  #couple{
+    --couple-frame-top-h: clamp(190px, 46vw, 202px);
+    --couple-frame-bottom-h: clamp(190px, 46vw, 208px);
+
+    padding-top:clamp(154px, 38vw, 164px) !important;
+    padding-bottom:calc(var(--couple-frame-bottom-h) + 32px) !important;
+  }
+
+  #couple .title-display{
+    margin-bottom:30px !important;
+  }
+
+  #couple .couple-photo{
+    width:min(100%, 212px) !important;
+  }
+
+  #couple .couple-and{
+    margin:28px auto 30px !important;
+  }
+}
+
+@media (max-width:380px){
+  #couple{
+    --couple-frame-top-h:188px;
+    --couple-frame-bottom-h:188px;
+    padding-top:150px !important;
+    padding-bottom:220px !important;
+  }
+
+  #couple .couple-photo{
+    width:min(100%, 204px) !important;
+  }
+
+  #couple .couple-name{
+    font-size:27px !important;
+  }
+}
+
+
+
+/* ==================================================================
+   FINAL SHARED FRAME SYSTEM — MATCH ALL CONTENT SECTIONS TO COUPLE
+   ------------------------------------------------------------------
+   Baseline visual: #couple.
+   Applies the exact same frame composition, top rhythm, side safe-area,
+   and bottom reserve to Ayat + all sections after it.
+   Cover and prewedding (#greeting) intentionally remain independent.
+   ================================================================== */
+
+:root{
+  --shared-frame-safe-x: clamp(40px, 9.25%, 70px);
+  --shared-frame-top: clamp(104px, 21%, 156px);
+  --shared-frame-bottom: clamp(122px, 29%, 210px);
+  --shared-frame-content-max: 620px;
+}
+
+section.section:is(
+  #ayat,
+  #couple,
+  #events,
+  #timeline,
+  #gallery,
+  #rsvp,
+  #gift,
+  #wishes,
+  #closing
+){
+  position:relative !important;
+  width:min(100vw,var(--invite-portrait-width)) !important;
+  max-width:var(--invite-max-width) !important;
+  min-height:100svh !important;
+  margin-inline:auto !important;
+
+  padding-top:var(--shared-frame-top) !important;
+  padding-right:var(--shared-frame-safe-x) !important;
+  padding-bottom:var(--shared-frame-bottom) !important;
+  padding-left:var(--shared-frame-safe-x) !important;
+
+  justify-content:flex-start !important;
+  align-items:center !important;
+  overflow:hidden !important;
+
+  background-color:#fff8ef !important;
+  background-image:
+    url('images/frame-top.png'),
+    url('images/frame-bottom.png'),
+    url('images/frame-mid.png') !important;
+  background-position:
+    center top,
+    center bottom,
+    center top !important;
+  background-size:
+    100% auto,
+    100% auto,
+    100% auto !important;
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    repeat-y !important;
+}
+
+section.section:is(
+  #ayat,
+  #couple,
+  #events,
+  #timeline,
+  #gallery,
+  #rsvp,
+  #gift,
+  #wishes,
+  #closing
+) > .section-inner{
+  position:relative !important;
+  z-index:2 !important;
+  width:100% !important;
+  max-width:var(--shared-frame-content-max) !important;
+  margin:0 auto !important;
+  padding:0 !important;
+}
+
+/* All conventional section headings start at the same optical Y-position
+   as the Couple heading. Component-specific content continues naturally. */
+section.section:is(
+  #couple,
+  #events,
+  #timeline,
+  #gallery,
+  #rsvp,
+  #gift,
+  #wishes,
+  #closing
+) > .section-inner > .eyebrow{
+  width:100% !important;
+  margin:0 auto 10px !important;
+}
+
+section.section:is(
+  #couple,
+  #events,
+  #timeline,
+  #gallery,
+  #rsvp,
+  #gift,
+  #wishes
+) > .section-inner > .title-display{
+  width:100% !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  margin-bottom:34px !important;
+}
+
+/* Ayat does not use eyebrow/title-display, so preserve its own internal
+   typography while letting the shared section padding position it. */
+#ayat .ayat-frame{
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 auto !important;
+}
+
+/* Keep wide components inside the exact same side rails as Couple. */
+section.section:is(
+  #events,
+  #timeline,
+  #gallery,
+  #rsvp,
+  #gift,
+  #wishes,
+  #closing
+) :is(
+  .event-card,
+  .map-embed,
+  .timeline,
+  .gallery-grid,
+  .rsvp-card,
+  .bank-card,
+  .gift-confirm-card,
+  .physical-gift-grid,
+  .wish-form,
+  .wish-list
+){
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+
+@media (max-width:760px){
+  :root{
+    --shared-frame-safe-x:max(38px, 9.5%);
+  }
+
+  section.section:is(
+    #ayat,
+    #couple,
+    #events,
+    #timeline,
+    #gallery,
+    #rsvp,
+    #gift,
+    #wishes,
+    #closing
+  ){
+    width:100vw !important;
+    max-width:none !important;
+    box-shadow:none !important;
+  }
+}
+
+/* Mobile uses the same compressed frame dimensions that fixed #couple.
+   This is the key rule that prevents Events/Timeline/etc. from having a
+   taller-looking arch than Couple. */
+@media (max-width:560px){
+  :root{
+    --shared-mobile-frame-top-h:clamp(194px, 46vw, 238px);
+    --shared-mobile-frame-bottom-h:clamp(194px, 46vw, 258px);
+    --shared-frame-safe-x:max(38px, 9.25%);
+  }
+
+  section.section:is(
+    #ayat,
+    #couple,
+    #events,
+    #timeline,
+    #gallery,
+    #rsvp,
+    #gift,
+    #wishes,
+    #closing
+  ){
+    min-height:100svh !important;
+
+    padding-top:clamp(158px, 38vw, 182px) !important;
+    padding-right:var(--shared-frame-safe-x) !important;
+    padding-bottom:calc(var(--shared-mobile-frame-bottom-h) + 34px) !important;
+    padding-left:var(--shared-frame-safe-x) !important;
+
+    background-position:
+      center top,
+      center bottom,
+      center var(--shared-mobile-frame-top-h) !important;
+    background-size:
+      100% var(--shared-mobile-frame-top-h),
+      100% var(--shared-mobile-frame-bottom-h),
+      100% auto !important;
+    background-repeat:
+      no-repeat,
+      no-repeat,
+      repeat-y !important;
+  }
+
+  section.section:is(
+    #couple,
+    #events,
+    #timeline,
+    #gallery,
+    #rsvp,
+    #gift,
+    #wishes,
+    #closing
+  ) > .section-inner > .eyebrow{
+    margin:0 auto 10px !important;
+    font-size:11px !important;
+    line-height:1.35 !important;
+    letter-spacing:.28em !important;
+  }
+
+  section.section:is(
+    #couple,
+    #events,
+    #timeline,
+    #gallery,
+    #rsvp,
+    #gift,
+    #wishes
+  ) > .section-inner > .title-display{
+    margin:0 auto 34px !important;
+    line-height:1.05 !important;
+  }
+}
+
+@media (max-width:430px){
+  :root{
+    --shared-mobile-frame-top-h:clamp(190px, 46vw, 202px);
+    --shared-mobile-frame-bottom-h:clamp(190px, 46vw, 208px);
+    --shared-frame-safe-x:max(38px, 9.25%);
+  }
+
+  section.section:is(
+    #ayat,
+    #couple,
+    #events,
+    #timeline,
+    #gallery,
+    #rsvp,
+    #gift,
+    #wishes,
+    #closing
+  ){
+    padding-top:clamp(154px, 38vw, 164px) !important;
+    padding-bottom:calc(var(--shared-mobile-frame-bottom-h) + 32px) !important;
+  }
+
+  section.section:is(
+    #couple,
+    #events,
+    #timeline,
+    #gallery,
+    #rsvp,
+    #gift,
+    #wishes
+  ) > .section-inner > .title-display{
+    margin-bottom:30px !important;
+  }
+}
+
+@media (max-width:380px){
+  :root{
+    --shared-mobile-frame-top-h:188px;
+    --shared-mobile-frame-bottom-h:188px;
+    --shared-frame-safe-x:36px;
+  }
+
+  section.section:is(
+    #ayat,
+    #couple,
+    #events,
+    #timeline,
+    #gallery,
+    #rsvp,
+    #gift,
+    #wishes,
+    #closing
+  ){
+    padding-top:150px !important;
+    padding-bottom:220px !important;
+  }
+}
+
+
+/* ==================================================================
+   FINAL UX ENHANCEMENTS — COVER GATE, CLOUD HERO, MUSIC, VERTICAL BALANCE
+   ================================================================== */
+
+/* --- COVER: re-enable foliage assets and use them as opening gates --- */
+#cover{
+  overflow:hidden;
+}
+
+.cover-foliage{
+  display:block !important;
+  opacity:1;
+  pointer-events:none;
+  will-change:transform,opacity,filter;
+  transform-origin:center;
+}
+
+#cover.opening .cover-foliage.tl{
+  animation:gateOpenTL .95s cubic-bezier(.2,.8,.2,1) forwards !important;
+}
+#cover.opening .cover-foliage.tr{
+  animation:gateOpenTR .95s cubic-bezier(.2,.8,.2,1) forwards !important;
+}
+#cover.opening .cover-foliage.bl{
+  animation:gateOpenBL 1s cubic-bezier(.2,.8,.2,1) forwards !important;
+}
+#cover.opening .cover-foliage.br{
+  animation:gateOpenBR 1s cubic-bezier(.2,.8,.2,1) forwards !important;
+}
+
+@keyframes gateOpenTL{
+  0%{ opacity:1; transform:translate(0,0) rotate(0deg) scale(1); filter:blur(0); }
+  100%{ opacity:0; transform:translate(-36%,-18%) rotate(-18deg) scale(1.06); filter:blur(2px); }
+}
+@keyframes gateOpenTR{
+  0%{ opacity:1; transform:scaleX(-1) translate(0,0) rotate(0deg) scale(1); filter:blur(0); }
+  100%{ opacity:0; transform:scaleX(-1) translate(-36%,-18%) rotate(-18deg) scale(1.06); filter:blur(2px); }
+}
+@keyframes gateOpenBL{
+  0%{ opacity:1; transform:translate(0,0) rotate(0deg) scale(1); filter:blur(0); }
+  100%{ opacity:0; transform:translate(-30%,22%) rotate(14deg) scale(1.04); filter:blur(2px); }
+}
+@keyframes gateOpenBR{
+  0%{ opacity:1; transform:scaleX(-1) translate(0,0) rotate(0deg) scale(1); filter:blur(0); }
+  100%{ opacity:0; transform:scaleX(-1) translate(-30%,22%) rotate(14deg) scale(1.04); filter:blur(2px); }
+}
+
+#cover.opening .cover-card{
+  animation:coverContentOut .82s cubic-bezier(.2,.8,.2,1) forwards !important;
+}
+
+@keyframes coverContentOut{
+  0%{ opacity:1; transform:translate(-50%,-50%) scale(1); filter:blur(0); }
+  100%{ opacity:0; transform:translate(-50%,-54%) scale(.97); filter:blur(3px); }
+}
+
+#cover.opening{
+  animation:coverZoomOut 1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes coverZoomOut{
+  0%{ background-size:100% 100% !important; }
+  100%{ background-size:106% 106% !important; }
+}
+
+/* Initial entrance animation on first load */
+#cover:not(.intro-ready) .cover-wayang.left{
+  opacity:0 !important;
+  transform:translateX(-60px) rotate(-6deg);
+}
+#cover:not(.intro-ready) .cover-wayang.right{
+  opacity:0 !important;
+  transform:translateX(60px) rotate(6deg);
+}
+#cover:not(.intro-ready) .cover-eyebrow,
+#cover:not(.intro-ready) .cover-names,
+#cover:not(.intro-ready) .cover-date,
+#cover:not(.intro-ready) .cover-to,
+#cover:not(.intro-ready) .btn-open{
+  opacity:0;
+}
+
+#cover.intro-ready .cover-wayang.left{
+  animation:coverWayangEnterLeft 1.2s cubic-bezier(.16,.8,.24,1) forwards,
+            assetWayangLeft 5.8s ease-in-out 1.2s infinite !important;
+}
+#cover.intro-ready .cover-wayang.right{
+  animation:coverWayangEnterRight 1.2s cubic-bezier(.16,.8,.24,1) forwards,
+            assetWayangRight 6.2s ease-in-out 1.2s infinite !important;
+}
+
+@keyframes coverWayangEnterLeft{
+  from{ opacity:0; transform:translateX(-60px) rotate(-6deg); }
+  to{ opacity:1; transform:translateX(0) rotate(0); }
+}
+@keyframes coverWayangEnterRight{
+  from{ opacity:0; transform:translateX(60px) rotate(6deg); }
+  to{ opacity:1; transform:translateX(0) rotate(0); }
+}
+
+#cover.intro-ready .cover-eyebrow{ animation:coverTextEnter .7s ease .35s forwards; }
+#cover.intro-ready .cover-names{ animation:coverNamesEnter .9s cubic-bezier(.18,.8,.25,1) .55s forwards; }
+#cover.intro-ready .cover-date{ animation:coverTextEnter .7s ease .78s forwards; }
+#cover.intro-ready .cover-to{ animation:coverTextEnter .7s ease .98s forwards; }
+#cover.intro-ready .btn-open{
+  opacity:0;
+  animation:coverButtonEnter .75s cubic-bezier(.18,.8,.25,1) 1.18s forwards,
+            pulse-open 2.6s ease-in-out 1.95s infinite;
+}
+
+@keyframes coverTextEnter{
+  from{ opacity:0; transform:translateY(14px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+@keyframes coverNamesEnter{
+  from{ opacity:0; transform:translateY(18px) scale(.95); filter:blur(4px); }
+  to{ opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
+}
+@keyframes coverButtonEnter{
+  from{ opacity:0; transform:translateY(16px) scale(.95); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+/* --- PREWEDDING HERO: cloud-like masking / softer card composition --- */
+.prewed-stage{
+  width:calc(100% - 28px) !important;
+  height:64svh !important;
+  min-height:430px !important;
+  margin:18px auto 0 !important;
+  border-radius:34px !important;
+  overflow:hidden !important;
+  background:#e8eef0 !important;
+  box-shadow:0 22px 50px -28px rgba(58,46,34,.34) !important;
+}
+
+.prewed-stage::before,
+.prewed-stage::after{
+  content:"" !important;
+  position:absolute !important;
+  left:-6% !important;
+  right:-6% !important;
+  z-index:6 !important;
+  height:116px !important;
+  pointer-events:none !important;
+  filter:blur(.6px) !important;
+}
+
+.prewed-stage::before{
+  top:-42px !important;
+  background:
+    radial-gradient(circle at 4% 80%, rgba(255,250,244,.98) 0 28px, transparent 29px),
+    radial-gradient(circle at 15% 35%, rgba(255,250,244,.98) 0 38px, transparent 39px),
+    radial-gradient(circle at 31% 72%, rgba(255,250,244,.98) 0 32px, transparent 33px),
+    radial-gradient(circle at 50% 30%, rgba(255,250,244,.98) 0 42px, transparent 43px),
+    radial-gradient(circle at 68% 70%, rgba(255,250,244,.98) 0 34px, transparent 35px),
+    radial-gradient(circle at 84% 36%, rgba(255,250,244,.98) 0 37px, transparent 38px),
+    radial-gradient(circle at 97% 76%, rgba(255,250,244,.98) 0 26px, transparent 27px) !important;
+}
+
+.prewed-stage::after{
+  bottom:-42px !important;
+  background:
+    radial-gradient(circle at 5% 28%, rgba(255,250,244,.99) 0 28px, transparent 29px),
+    radial-gradient(circle at 18% 78%, rgba(255,250,244,.99) 0 40px, transparent 41px),
+    radial-gradient(circle at 36% 34%, rgba(255,250,244,.99) 0 34px, transparent 35px),
+    radial-gradient(circle at 54% 76%, rgba(255,250,244,.99) 0 44px, transparent 45px),
+    radial-gradient(circle at 74% 32%, rgba(255,250,244,.99) 0 35px, transparent 36px),
+    radial-gradient(circle at 89% 74%, rgba(255,250,244,.99) 0 39px, transparent 40px),
+    radial-gradient(circle at 98% 28%, rgba(255,250,244,.99) 0 26px, transparent 27px) !important;
+}
+
+.prewed-slide img{
+  object-position:center 43% !important;
+}
+
+.prewed-info{
+  margin-top:-12px !important;
+  min-height:36svh !important;
+  padding:42px 22px 76px !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(232,218,201,.22), transparent 38%),
+    linear-gradient(180deg,rgba(255,250,243,.96),rgba(255,252,248,.98)) !important;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+}
+
+.prewed-countdown > div{
+  border-radius:22px !important;
+  background:linear-gradient(180deg,#c39a60,#a97b3d) !important;
+  box-shadow:0 18px 30px -18px rgba(116,87,36,.42),
+             inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+.prewed-countdown .num{
+  font-family:var(--f-display) !important;
+  font-style:italic;
+}
+.prewed-countdown .lbl{
+  margin-top:8px !important;
+  letter-spacing:.08em !important;
+}
+
+/* --- Better vertical balance for shorter content sections --- */
+#ayat,
+#couple,
+#rsvp,
+#wishes,
+#closing{
+  justify-content:center !important;
+}
+
+#ayat > .section-inner,
+#couple > .section-inner,
+#rsvp > .section-inner,
+#wishes > .section-inner,
+#closing > .section-inner{
+  margin-top:auto !important;
+  margin-bottom:auto !important;
+}
+
+#events,
+#timeline,
+#gallery,
+#gift{
+  justify-content:flex-start !important;
+}
+
+/* --- Floating music controller --- */
+.music-toggle{
+  position:fixed;
+  left:max(14px, calc((100vw - var(--invite-portrait-width))/2 + 14px));
+  bottom:18px;
+  z-index:95;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 13px;
+  border-radius:999px;
+  border:1px solid rgba(181,131,70,.32);
+  background:rgba(255,250,243,.92);
+  color:#6f2f33;
+  box-shadow:0 12px 24px -18px rgba(58,46,34,.35);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition:opacity .25s ease, transform .25s ease;
+}
+.music-toggle svg{ width:16px; height:16px; }
+.music-toggle .music-label{ font-size:12px; line-height:1; }
+.music-toggle.muted{ opacity:.76; }
+
+body.locked .music-toggle{
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(8px);
+}
+
+@media (max-width:760px){
+  .prewed-stage{
+    width:calc(100% - 20px) !important;
+    height:62svh !important;
+    min-height:390px !important;
+    border-radius:28px !important;
+  }
+
+  .prewed-info{
+    min-height:38svh !important;
+    padding:36px 18px 74px !important;
+  }
+
+  .music-toggle{
+    left:14px;
+    bottom:14px;
+    padding:10px 11px;
+  }
+  .music-toggle .music-label{ display:none; }
+
+  #ayat,
+  #couple,
+  #rsvp,
+  #wishes,
+  #closing{
+    justify-content:center !important;
+  }
+}
+
+@media (max-width:430px){
+  .prewed-stage{
+    width:calc(100% - 16px) !important;
+    height:60svh !important;
+    min-height:350px !important;
+    border-radius:24px !important;
+  }
+
+  .prewed-info{
+    min-height:40svh !important;
+    padding:32px 14px 70px !important;
+  }
+
+  .prewed-names{
+    margin-bottom:20px !important;
+  }
+
+  .prewed-countdown{
+    width:96% !important;
+  }
+}
+
+/* accessibility */
+@media (prefers-reduced-motion: reduce){
+  #cover .cover-wayang,
+  #cover .cover-eyebrow,
+  #cover .cover-names,
+  #cover .cover-date,
+  #cover .cover-to,
+  #cover .btn-open,
+  #cover .cover-foliage{
+    animation:none !important;
+    opacity:1 !important;
+    transform:none !important;
+    filter:none !important;
+  }
+}
+
+</style>
+</head>
+<body class="locked">
+
+<!-- ============================= NAV DOTS ============================= -->
+<div id="navdots"></div>
+
+<!-- ============================= COVER ============================= -->
+<div id="cover">
+  <!-- EDIT: WAYANG ASSET — transparent PNG/WebP recommended -->
+  <div class="cover-wayang left" aria-hidden="true"></div>
+  <div class="cover-wayang right" aria-hidden="true"></div>
+  <div class="cover-cloud" aria-hidden="true"></div>
+
+  <!-- Separate decorative assets: static until the opening transition -->
+  <img class="cover-foliage tl" src="images/foliage-top-left.png" alt="" aria-hidden="true">
+  <img class="cover-foliage tr" src="images/foliage-top-right.png" alt="" aria-hidden="true">
+  <img class="cover-foliage bl" src="images/foliage-bottom-left.png" alt="" aria-hidden="true">
+  <img class="cover-foliage br" src="images/foliage-bottom-right.png" alt="" aria-hidden="true">
+
+  <div class="cover-card">
+    <div class="cover-eyebrow">The Wedding Of</div>
+    <!-- EDIT: NAMA -->
+    <h1 class="cover-names">Nafi' <span class="cover-amp">&amp;</span> Musa</h1>
+    <!-- EDIT: TANGGAL -->
+    <div class="cover-date">17 &middot; 11 &middot; 2026</div>
+
+    <div class="cover-to">
+      Kepada Yth.<br>Bapak/Ibu/Saudara/i
+      <b id="guestName">Tamu Undangan</b>
+    </div>
+
+    <button class="btn-open" id="btnOpen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      Buka Undangan
+    </button>
+  </div>
+</div>
+
+<!-- ============================= 1. GREETING / PREWEDDING SLIDER ============================= -->
+<section class="section" id="greeting">
+  <div class="section-inner">
+    <div class="prewed-stage" id="prewedStage">
+      <div class="prewed-slider" id="prewedSlider">
+        <!-- EDIT: PREWEDDING SLIDER. Total 6 slots. Missing files are skipped automatically. -->
+        <div class="prewed-slide active"><img src="images/prewedding-1.jpeg" alt="Foto prewedding 1" draggable="false" onerror="this.closest('.prewed-slide').remove()"></div>
+        <div class="prewed-slide"><img src="images/prewedding-2.jpeg" alt="Foto prewedding 2" draggable="false" onerror="this.closest('.prewed-slide').remove()"></div>
+        <div class="prewed-slide"><img src="images/prewedding-3.jpeg" alt="Foto prewedding 3" draggable="false" onerror="this.closest('.prewed-slide').remove()"></div>
+        <div class="prewed-slide"><img src="images/prewedding-4.jpeg" alt="Foto prewedding 4" draggable="false" onerror="this.closest('.prewed-slide').remove()"></div>
+        <div class="prewed-slide"><img src="images/prewedding-5.jpeg" alt="Foto prewedding 5" draggable="false" onerror="this.closest('.prewed-slide').remove()"></div>
+      </div>
+      <div class="prewed-dots" id="prewedDots" aria-label="Navigasi foto prewedding"></div>
+    </div>
+
+    <div class="prewed-info reveal">
+      <h2 class="prewed-names">Nafi' &amp; Musa</h2>
+      <p class="prewed-intro">Dengan memohon rahmat dan ridho Allah Subhanahu Wata&rsquo;ala, kami menantikan hari bahagia pernikahan kami.</p>
+
+      <div class="prewed-countdown" id="countdown">
+        <div><div class="num" id="cd-d">00</div><div class="lbl">Hari</div></div>
+        <div><div class="num" id="cd-h">00</div><div class="lbl">Jam</div></div>
+        <div><div class="num" id="cd-m">00</div><div class="lbl">Menit</div></div>
+        <div><div class="num" id="cd-s">00</div><div class="lbl">Detik</div></div>
+      </div>
+    </div>
+
+    <button class="hero-scroll" onclick="goTo('ayat')" aria-label="Lanjut ke ayat">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ============================= 2. AYAT ============================= -->
+<section class="section" id="ayat">
+  <div class="section-inner">
+    <div class="ayat-frame reveal-scale">
+      <div class="ayat-heading">Ar-Rum &middot; Ayat 21</div>
+      <div class="ayat-arabic-block">
+        <div class="ayat-arabic">
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوٓا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+        </div>
+      </div>
+
+      <div class="ayat-translation-block">
+        <p class="ayat-translation">
+          &ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa cinta dan kasih sayang.&rdquo;
+        </p>
+        <div class="ayat-source">QS. Ar-Rum : 21</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 3. COUPLE ============================= -->
+<section class="section" id="couple">
+  <div class="parang-wash"></div>
+  <div class="section-inner" style="max-width:680px;">
+    <div class="eyebrow reveal">Kedua Mempelai</div>
+    <div class="title-display reveal" style="font-size:clamp(26px,6vw,34px); font-style:italic; margin-bottom:8px;">Assalamu&rsquo;alaikum</div>
+    <div class="couple-grid">
+      <div class="couple-card reveal d1">
+        <div class="couple-photo">
+          <!-- EDIT: FOTO mempelai wanita -->
+          <img src="images/mempelai-wanita.jpeg" alt="Foto mempelai wanita" onerror="fallbackImg(this,'Foto Mempelai Wanita')">
+        </div>
+        <div class="couple-order">Putri Pertama</div>
+        <div class="couple-name">Malichatun Nafi'ah</div>
+        <div class="couple-parents">
+          Putri dari Bapak <b>Nur Khowim</b><br>
+          &amp; Ibu <b>Mustakimah</b>
+        </div>
+        <a class="couple-ig" href="https://instagram.com/Nafi'.ayu" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.25.07 1.63.07 4.81s-.01 3.56-.07 4.81c-.15 3.23-1.67 4.77-4.92 4.92-1.25.06-1.62.07-4.85.07s-3.6-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.06 15.56 2.05 15.19 2.05 12s.01-3.56.07-4.81c.15-3.23 1.67-4.77 4.92-4.92C8.29 2.2 8.67 2.2 12 2.2zm0 1.8c-3.15 0-3.5.01-4.74.07-2.35.11-3.4 1.17-3.51 3.51-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.11 2.34 1.16 3.4 3.51 3.51 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c2.35-.11 3.4-1.17 3.51-3.51.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.11-2.34-1.16-3.4-3.51-3.51C15.5 4.01 15.15 4 12 4zm0 3.6a4.4 4.4 0 110 8.8 4.4 4.4 0 010-8.8zm0 1.8a2.6 2.6 0 100 5.2 2.6 2.6 0 000-5.2zm5.6-2a1 1 0 110 2 1 1 0 010-2z"/></svg>
+          @_nafffffff
+        </a>
+      </div>
+      <div class="couple-and reveal d2">&amp;</div>
+      <div class="couple-card reveal d3">
+        <div class="couple-photo">
+          <!-- EDIT: FOTO mempelai pria -->
+          <img src="images/mempelai-pria.jpeg" alt="Foto mempelai pria" onerror="fallbackImg(this,'Foto Mempelai Pria')">
+        </div>
+        <div class="couple-order">Putra Pertama</div>
+        <div class="couple-name">Musa Nur Rahman</div>
+        <div class="couple-parents">
+          Putra dari Alm. Bapak <b>Surip</b><br>
+          &amp; Ibu <b>Siti Khasanah</b>
+        </div>
+        <a class="couple-ig" href="https://instagram.com/Musa.kusuma" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.25.07 1.63.07 4.81s-.01 3.56-.07 4.81c-.15 3.23-1.67 4.77-4.92 4.92-1.25.06-1.62.07-4.85.07s-3.6-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.06 15.56 2.05 15.19 2.05 12s.01-3.56.07-4.81c.15-3.23 1.67-4.77 4.92-4.92C8.29 2.2 8.67 2.2 12 2.2zm0 1.8c-3.15 0-3.5.01-4.74.07-2.35.11-3.4 1.17-3.51 3.51-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.11 2.34 1.16 3.4 3.51 3.51 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c2.35-.11 3.4-1.17 3.51-3.51.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.11-2.34-1.16-3.4-3.51-3.51C15.5 4.01 15.15 4 12 4zm0 3.6a4.4 4.4 0 110 8.8 4.4 4.4 0 010-8.8zm0 1.8a2.6 2.6 0 100 5.2 2.6 2.6 0 000-5.2zm5.6-2a1 1 0 110 2 1 1 0 010-2z"/></svg>
+          @musa_nur_rahman
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 4. EVENTS ============================= -->
+<section class="section" id="events">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Waktu &amp; Tempat</div>
+    <h2 class="title-display reveal" style="font-size:clamp(26px,6vw,34px); font-style:italic; margin-bottom:26px;">Rangkaian Acara</h2>
+
+    <div class="event-card reveal d1">
+      <div class="event-name">Akad Nikah</div>
+      <div class="event-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg> Selasa, 17 November 2026 &bull; 10.00 WIB &ndash; selesai</div>
+      <div class="event-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 0114 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Kediaman mempelai wanita &mdash; Dusun III, Desa Pekutan, Kec. Bayan, Kab. Purworejo</div>
+      <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Dusun+III+Desa+Pekutan+Bayan+Purworejo" target="_blank" rel="noopener">
+        Lihat Maps <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <div class="event-card reveal d2">
+      <div class="event-name">Resepsi</div>
+      <div class="event-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg> Selasa, 17 November 2026 &bull; 11.00 WIB &ndash; selesai</div>
+      <div class="event-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 0114 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Kediaman mempelai wanita &mdash; Dusun III, Desa Pekutan, Kec. Bayan, Kab. Purworejo</div>
+      <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Dusun+III+Desa+Pekutan+Bayan+Purworejo" target="_blank" rel="noopener">
+        Lihat Maps <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <div class="event-card reveal d3">
+      <div class="event-name">Unduh Mantu</div>
+      <div class="event-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg> <!-- EDIT: TANGGAL unduh mantu --> Tanggal menyusul &bull; Waktu menyusul</div>
+      <div class="event-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 0114 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Kediaman mempelai pria &mdash; Jl. H. Zakaria RT.05/RW.03 No.23, Lenteng Agung, Jakarta Selatan</div>
+      <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Jl+H+Zakaria+RT+05+RW+03+No+23+Lenteng+Agung+Jakarta+Selatan" target="_blank" rel="noopener">
+        Lihat Maps <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <div class="map-embed-title reveal">Lokasi Akad &amp; Resepsi</div>
+    <div class="map-embed reveal">
+      <iframe loading="lazy" src="https://www.google.com/maps?q=Dusun+III+Desa+Pekutan+Bayan+Purworejo&output=embed"></iframe>
+    </div>
+    <div class="map-embed-title reveal">Lokasi Unduh Mantu</div>
+    <div class="map-embed reveal">
+      <iframe loading="lazy" src="https://www.google.com/maps?q=Jl+H+Zakaria+RT+05+RW+03+No+23+Lenteng+Agung+Jakarta+Selatan&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 5. TIMELINE ============================= -->
+<section class="section" id="timeline">
+  <div class="parang-wash"></div>
+  <div class="section-inner">
+    <div class="eyebrow reveal">Kisah Kami</div>
+    <h2 class="title-display reveal" style="font-size:clamp(26px,6vw,34px); font-style:italic; margin-bottom:8px;">Perjalanan Cinta</h2>
+    <p class="lead reveal" style="margin-bottom:10px;">*Kerangka ini dapat diisi ulang: ganti judul, cerita, dan foto sesuai momen kalian.</p>
+
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-dot">1</div>
+        <div class="t-photo"><img src="images/timeline-1.jpeg" alt="Awal pertemuan" onerror="fallbackImg(this,'Foto Awal Pertemuan')"></div>
+        <div class="t-title">Awal Pertemuan</div>
+        <div class="t-date">[29 Mei, 2025]</div>
+        <div class="t-desc">Hutan Pinus menjadi saksi awal kisah bahagia kita—tempat dua hati saling mengungkapkan rasa, dan dari sanalah perjalanan menuju hubungan yang lebih serius dimulai.
+</div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot">4</div>
+        <div class="t-photo"><img src="images/timeline-4.jpg" alt="Penetapan tanggal nikah" onerror="fallbackImg(this,'Foto Penetapan Tanggal')"></div>
+        <div class="t-title">Penetapan Tanggal Nikah</div>
+        <div class="t-date">[24 Maret, 2026]</div>
+        <div class="t-desc">Dengan niat tulus dan restu kedua keluarga, pertemuan ini menjadi langkah penting dalam perjalanan kami. Melalui musyawarah penuh kehangatan, ditetapkanlah 17 November 2026 sebagai hari bahagia untuk menyatukan kami dalam ikatan pernikahan.
+</div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot">2</div>
+        <div class="t-photo"><img src="images/timeline-2.jpg" alt="Perjalanan hubungan" onerror="fallbackImg(this,'Foto Perjalanan Hubungan')"></div>
+        <div class="t-title">Perjalanan Hubungan</div>
+        <div class="t-date">[02 April, 2026]</div>
+        <div class="t-desc">Di antara begitu banyak momen indah, merayakan hari istimewanya dengan sebuah kejutan menjadi salah satu kenangan yang paling berkesan bagi kami.
+</div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot">3</div>
+        <div class="t-photo"><img src="images/timeline-3.jpg" alt="Lamaran" onerror="fallbackImg(this,'Foto Lamaran')"></div>
+        <div class="t-title">Lamaran</div>
+        <div class="t-date">[24 Agustus, 2026]</div>
+        <div class="t-desc">Pertemuan kedua keluarga menjadi saksi atas kesungguhan hati kami, menguatkan komitmen dan membawa kisah cinta ini selangkah lebih dekat menuju ikatan pernikahan.
+</div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot">5</div>
+        <div class="t-photo"><img src="images/timeline-5.jpg" alt="Pengiriman seserahan" onerror="fallbackImg(this,'Foto Seserahan')"></div>
+        <div class="t-title">Pengiriman Seserahan</div>
+        <div class="t-date">[Tanggal, Tahun]</div>
+        <div class="t-desc">Seserahan dikirimkan sebagai simbol keseriusan menuju hari pernikahan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 6. GALLERY ============================= -->
+<section class="section" id="gallery">
+  <div class="section-inner" style="max-width:680px;">
+    <div class="eyebrow reveal">Momen Prewedding</div>
+    <h2 class="title-display reveal" style="font-size:clamp(28px,6vw,38px); font-style:italic; margin-bottom:12px;">Galeri Foto</h2>
+    <p class="gallery-intro reveal">Beberapa potret perjalanan kami menuju hari bahagia. Sentuh foto untuk melihatnya lebih besar.</p>
+    <div class="gallery-grid reveal" id="galleryGrid"></div>
+    <div class="gallery-empty" id="galleryEmpty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-6-6-9 9"/></svg>
+      Galeri foto akan tampil di sini setelah file foto ditambahkan.
+    </div>
+  </div>
+</section>
+<div id="lightbox" onclick="closeLightbox(event)">
+  <button type="button" aria-label="Tutup foto" onclick="closeLightbox(event)">&times;</button>
+  <img id="lightboxImg" src="" alt="Foto prewedding">
+</div>
+
+<!-- ============================= 7. RSVP ============================= -->
+<section class="section" id="rsvp">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Konfirmasi Kehadiran</div>
+    <h2 class="title-display reveal" style="font-size:clamp(28px,6vw,38px); font-style:italic; margin-bottom:12px;">RSVP</h2>
+    <p class="rsvp-intro reveal">Mohon bantu kami mempersiapkan acara dengan mengonfirmasi kehadiran Anda.</p>
+
+    <div class="rsvp-card reveal">
+      <form id="rsvpForm" onsubmit="submitRsvp(event)">
+        <div class="form-field">
+          <label>Nama Lengkap</label>
+          <input type="text" id="rsvpName" required placeholder="Nama Anda">
+        </div>
+        <div class="form-field">
+          <label>Konfirmasi Kehadiran</label>
+          <select id="rsvpStatus">
+            <option value="Hadir">Insya Allah Hadir</option>
+            <option value="Tidak Hadir">Belum Bisa Hadir</option>
+            <option value="Ragu">Masih Ragu</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Jumlah Tamu</label>
+          <input type="number" id="rsvpCount" min="1" value="1">
+        </div>
+        <div class="form-field">
+          <label>Ucapan &amp; Doa (opsional)</label>
+          <textarea id="rsvpMsg" placeholder="Tuliskan doa terbaik untuk kedua mempelai..."></textarea>
+        </div>
+        <button class="btn-submit" type="submit">Kirim Konfirmasi</button>
+      </form>
+      <div class="rsvp-list" id="rsvpList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 8. WEDDING GIFT ============================= -->
+<section class="section" id="gift">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Tanda Kasih</div>
+    <h2 class="title-display reveal" style="font-size:clamp(28px,6vw,38px); font-style:italic; margin-bottom:12px;">Wedding Gift</h2>
+    <p class="gift-intro reveal">Doa restu dan kehadiran Anda sudah lebih dari cukup bagi kami. Namun apabila berkenan memberikan tanda kasih, dapat melalui pilihan berikut.</p>
+
+    <div class="reveal">
+      <div class="bank-card b1">
+        <div class="bank-top"><div class="chip"></div><div class="logo">BCA</div></div>
+        <!-- EDIT: REKENING -->
+        <div class="bank-number">1234 5678 90</div>
+        <div class="bank-bottom">
+          <div><div class="name">a.n. Malichatun Nafi'ah</div></div>
+          <button class="btn-copy" type="button" onclick="copyText('1234567890', this)">Salin</button>
+        </div>
+      </div>
+
+      <div class="bank-card b2">
+        <div class="bank-top"><div class="chip"></div><div class="logo">Mandiri</div></div>
+        <!-- EDIT: REKENING -->
+        <div class="bank-number">9876 5432 10</div>
+        <div class="bank-bottom">
+          <div><div class="name">a.n. Musa Nur Rahman</div></div>
+          <button class="btn-copy" type="button" onclick="copyText('9876543210', this)">Salin</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift-confirm-card reveal">
+      <div class="gift-confirm-head">
+        <div class="gift-confirm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 11.6a8.5 8.5 0 01-12.6 7.45L3 20.5l1.45-4.75A8.5 8.5 0 1120.5 11.6z"/><path d="M8.7 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c-.2.2-.2.4 0 .7.7 1.2 1.7 2.2 3 2.8.3.2.5.1.7-.1l.8-1c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.5 0 .4-.2 1.2-.8 1.7-.6.6-1.4.9-2.3.7-1.2-.2-2.7-.7-4.4-2.2-2-1.8-3.2-4-3.5-5.2-.2-.8 0-1.4.2-1.6z"/></svg>
+        </div>
+        <div>
+          <div class="gift-confirm-title">Sudah mengirim hadiah?</div>
+          <div class="gift-confirm-text">Tidak perlu mengunggah bukti transfer di halaman undangan. Anda dapat mengonfirmasi melalui WhatsApp, lalu melampirkan bukti langsung di chat jika diperlukan.</div>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Nama Pengirim</label>
+        <input type="text" id="giftSender" placeholder="Nama Anda">
+      </div>
+      <div class="form-field">
+        <label>Hadiah Dikirim Untuk</label>
+        <select id="giftRecipient">
+          <option value="Nafi' - BCA">Nafi' — BNI</option>
+          <option value="Musa - Mandiri">Musa — BNI</option>
+          <option value="Hadiah fisik">Hadiah fisik</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Catatan (opsional)</label>
+        <textarea id="giftNote" placeholder="Contoh: Sudah saya transfer. Semoga menjadi berkah untuk kalian."></textarea>
+      </div>
+
+      <button class="btn-whatsapp" type="button" onclick="confirmGiftViaWhatsApp()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 11.6a8.5 8.5 0 01-12.6 7.45L3 20.5l1.45-4.75A8.5 8.5 0 1120.5 11.6z"/><path d="M8.7 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c-.2.2-.2.4 0 .7.7 1.2 1.7 2.2 3 2.8.3.2.5.1.7-.1l.8-1c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.5"/></svg>
+        Konfirmasi Hadiah via WhatsApp
+      </button>
+      <div class="gift-confirm-note">Setelah WhatsApp terbuka, pengirim dapat melampirkan screenshot bukti transfer langsung di percakapan. Cara ini lebih sederhana dan tidak menyimpan bukti transfer di server undangan.</div>
+    </div>
+
+    <div class="gift-subtitle reveal">Kirim Hadiah Fisik</div>
+    <div class="physical-gift-grid reveal">
+      <div class="physical-gift-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.1-7-11a7 7 0 0114 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h4>Mempelai Wanita</h4>
+        <p>Dusun III, Desa Pekutan, Kec. Bayan, Kab. Purworejo</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Dusun+III+Desa+Pekutan+Bayan+Purworejo" target="_blank" rel="noopener">Buka Maps →</a>
+      </div>
+      <div class="physical-gift-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.1-7-11a7 7 0 0114 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h4>Mempelai Pria</h4>
+        <p>Jl. H. Zakaria RT.05/RW.03 No.23, Lenteng Agung, Jakarta Selatan</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Jl+H+Zakaria+RT+05+RW+03+No+23+Lenteng+Agung+Jakarta+Selatan" target="_blank" rel="noopener">Buka Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 9. WISHES ============================= -->
+<section class="section" id="wishes">
+  <div class="parang-wash"></div>
+  <div class="section-inner">
+    <div class="eyebrow reveal">Ucapan</div>
+    <h2 class="title-display reveal" style="font-size:clamp(26px,6vw,34px); font-style:italic; margin-bottom:22px;">Kirim Doa &amp; Ucapan</h2>
+
+    <form class="wish-form reveal" onsubmit="submitWish(event)">
+      <div class="form-field">
+        <label>Nama</label>
+        <input type="text" id="wishName" required placeholder="Nama Anda">
+      </div>
+      <div class="form-field">
+        <label>Ucapan</label>
+        <textarea id="wishText" required placeholder="Tuliskan ucapan dan doa terbaik..."></textarea>
+      </div>
+      <button class="btn-submit" type="submit">Kirim Ucapan</button>
+    </form>
+
+    <div class="wish-list" id="wishList">
+      <p class="wish-empty" id="wishEmpty">Jadilah yang pertama mengirimkan ucapan &amp; doa 💛</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 10. CLOSING ============================= -->
+<section class="section" id="closing">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Terima Kasih</div>
+    <p class="lead reveal d1" style="margin-top:6px;">Merupakan suatu kebahagiaan dan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kedua mempelai.</p>
+    <div class="sekar reveal d2">
+      <svg width="46" height="46" viewBox="0 0 100 100" fill="none" stroke="#D9BD8E" stroke-width="1.4">
+        <circle cx="50" cy="50" r="6"/>
+        <path d="M50 44 C40 30,60 30,50 44 M56 50 C70 40,70 60,56 50 M50 56 C60 70,40 70,50 56 M44 50 C30 60,30 40,44 50"/>
+      </svg>
+    </div>
+    <div class="closing-names reveal d3">Nafi' &amp; Musa</div>
+    <div class="closing-families reveal d4">
+      Keluarga Besar Bapak <b>Bapak Nur Khowim</b><br>
+      &amp;<br>
+      Keluarga Besar Bapak <b>Alm. Bapak Surip</b>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ============================= HELPERS ============================= */
+function fallbackImg(img, label){
+  label = label || 'Foto';
+  var wrap = document.createElement('div');
+  wrap.className = 'img-fallback';
+  wrap.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-6-6-9 9"/></svg><span>'+label+'</span>';
+  if(img.parentElement){ img.parentElement.replaceChild(wrap, img); }
+}
+
+
+/* cover intro animation after assets/page are ready */
+window.addEventListener('load', function(){
+  var cover = document.getElementById('cover');
+  if(!cover) return;
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      cover.classList.add('intro-ready');
+    });
+  });
+});
+
+/* guest name from ?to= */
+(function(){
+
+  var params = new URLSearchParams(window.location.search);
+  var to = params.get('to');
+
+  if(to){
+
+    // "_" pada URL diubah menjadi spasi
+    var guest = decodeURIComponent(to)
+      .replace(/_/g, ' ')
+      .trim();
+
+    document.getElementById('guestName').textContent = guest;
+
+    var rsvpName = document.getElementById('rsvpName');
+    var giftSender = document.getElementById('giftSender');
+
+    if(rsvpName) rsvpName.value = guest;
+    if(giftSender) giftSender.value = guest;
+
+  }
+
+})();
+
+
+/* ============================= BACKGROUND MUSIC ============================= */
+var bgMusic = document.getElementById('bgMusic');
+var musicToggle = document.getElementById('musicToggle');
+
+function syncMusicToggle(){
+  if(!bgMusic || !musicToggle) return;
+
+  var isOff = bgMusic.paused || bgMusic.muted;
+  musicToggle.classList.toggle('muted', isOff);
+
+  var label = musicToggle.querySelector('.music-label');
+  if(label){
+    label.textContent = isOff ? 'Musik Off' : 'Musik On';
+  }
+
+  musicToggle.setAttribute(
+    'aria-label',
+    isOff ? 'Nyalakan musik' : 'Matikan musik'
+  );
+}
+
+function startBackgroundMusic(){
+  if(!bgMusic) return;
+
+  bgMusic.volume = 0.35;
+  bgMusic.muted = false;
+
+  var playPromise = bgMusic.play();
+  if(playPromise && typeof playPromise.then === 'function'){
+    playPromise.then(syncMusicToggle).catch(function(){
+      syncMusicToggle();
+    });
+  }
+}
+
+if(musicToggle && bgMusic){
+  syncMusicToggle();
+
+  musicToggle.addEventListener('click', function(){
+    if(bgMusic.paused){
+      startBackgroundMusic();
+      return;
+    }
+
+    bgMusic.muted = !bgMusic.muted;
+    syncMusicToggle();
+  });
+}
+
+/* cover open: floral gate transition, then the invitation opens */
+document.getElementById('btnOpen').addEventListener('click', function(){
+  var cover = document.getElementById('cover');
+  if(cover.classList.contains('opening')) return;
+
+  startBackgroundMusic();
+  cover.classList.add('opening');
+
+  window.setTimeout(function(){
+    cover.classList.add('closed');
+    document.body.classList.remove('locked');
+    document.getElementById('greeting').scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
+  }, 1000);
+});
+
+function goTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+/* reveal on scroll */
+var revealEls = document.querySelectorAll('.reveal, .reveal-scale');
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); } });
+}, {threshold:.18});
+revealEls.forEach(function(el){ io.observe(el); });
+
+/* nav dots */
+var sections = ['greeting','ayat','couple','events','timeline','gallery','rsvp','gift','wishes','closing'];
+var navdots = document.getElementById('navdots');
+sections.forEach(function(id){
+  var b = document.createElement('button');
+  b.setAttribute('aria-label', id);
+  b.addEventListener('click', function(){ goTo(id); });
+  navdots.appendChild(b);
+});
+var dotBtns = navdots.querySelectorAll('button');
+var secObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var idx = sections.indexOf(e.target.id);
+      dotBtns.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+    }
+  });
+}, {threshold:.5});
+sections.forEach(function(id){ secObserver.observe(document.getElementById(id)); });
+
+/* prewedding slider — autoplay, dots, click navigation, and touch swipe */
+var prewedTimer = null;
+var prewedIndex = 0;
+var prewedTouchStartX = null;
+
+function getPrewedSlides(){
+  return Array.prototype.slice.call(document.querySelectorAll('#prewedSlider .prewed-slide'));
+}
+
+function renderPrewedDots(){
+  var dots = document.getElementById('prewedDots');
+  var slides = getPrewedSlides();
+  if(!dots) return;
+  dots.innerHTML = '';
+
+  slides.forEach(function(_, i){
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'prewed-dot' + (i === prewedIndex ? ' active' : '');
+    dot.setAttribute('aria-label', 'Tampilkan foto ' + (i + 1));
+    dot.addEventListener('click', function(){
+      showPrewedSlide(i, true);
+    });
+    dots.appendChild(dot);
+  });
+
+  dots.style.display = slides.length > 1 ? 'flex' : 'none';
+}
+
+function showPrewedSlide(index, restart){
+  var slides = getPrewedSlides();
+  if(!slides.length) return;
+
+  prewedIndex = (index + slides.length) % slides.length;
+  slides.forEach(function(slide, i){
+    slide.classList.toggle('active', i === prewedIndex);
+  });
+
+  var dots = document.querySelectorAll('#prewedDots .prewed-dot');
+  dots.forEach(function(dot, i){
+    dot.classList.toggle('active', i === prewedIndex);
+  });
+
+  if(restart) restartPrewedAutoplay();
+}
+
+function nextPrewedSlide(){ showPrewedSlide(prewedIndex + 1, false); }
+function prevPrewedSlide(){ showPrewedSlide(prewedIndex - 1, false); }
+
+function restartPrewedAutoplay(){
+  clearInterval(prewedTimer);
+  if(getPrewedSlides().length > 1){
+    prewedTimer = setInterval(nextPrewedSlide, 5000);
+  }
+}
+
+function initPrewedSlider(){
+  var slides = getPrewedSlides();
+  var stage = document.getElementById('prewedStage');
+  if(!slides.length || !stage) return;
+
+  prewedIndex = 0;
+  slides.forEach(function(slide, i){ slide.classList.toggle('active', i === 0); });
+  renderPrewedDots();
+  restartPrewedAutoplay();
+
+  stage.addEventListener('mouseenter', function(){ clearInterval(prewedTimer); });
+  stage.addEventListener('mouseleave', restartPrewedAutoplay);
+
+  stage.addEventListener('touchstart', function(e){
+    prewedTouchStartX = e.touches[0].clientX;
+  }, {passive:true});
+
+  stage.addEventListener('touchend', function(e){
+    if(prewedTouchStartX === null) return;
+    var endX = e.changedTouches[0].clientX;
+    var delta = endX - prewedTouchStartX;
+    prewedTouchStartX = null;
+
+    if(Math.abs(delta) < 45) return;
+    if(delta < 0) nextPrewedSlide();
+    else prevPrewedSlide();
+    restartPrewedAutoplay();
+  }, {passive:true});
+
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden) clearInterval(prewedTimer);
+    else restartPrewedAutoplay();
+  });
+}
+
+window.addEventListener('load', function(){
+  /* Allow failed image elements to remove their slide before counting dots. */
+  setTimeout(initPrewedSlider, 80);
+});
+
+/* countdown */
+var target = new Date('2026-11-17T10:00:00+07:00').getTime();
+function tickCountdown(){
+  var now = Date.now();
+  var diff = Math.max(0, target - now);
+  var d = Math.floor(diff/86400000);
+  var h = Math.floor(diff%86400000/3600000);
+  var m = Math.floor(diff%3600000/60000);
+  var s = Math.floor(diff%60000/1000);
+  document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+}
+tickCountdown(); setInterval(tickCountdown, 1000);
+
+/* gallery — masonry layout, .jpg/.jpeg fallback, missing images are hidden */
+var galleryGrid = document.getElementById('galleryGrid');
+var galleryEmpty = document.getElementById('galleryEmpty');
+var galleryPending = 8;
+var galleryLoaded = 0;
+
+function finishGalleryAttempt(){
+  galleryPending--;
+  if(galleryPending <= 0 && galleryLoaded === 0 && galleryEmpty){
+    galleryEmpty.classList.add('show');
+  }
+}
+
+function loadGalleryItem(index){
+  var item = document.createElement('div');
+  item.className = 'g-item';
+  var img = document.createElement('img');
+  img.alt = 'Foto galeri ' + index;
+  img.loading = 'lazy';
+  img.dataset.extTried = 'jpg';
+
+  img.addEventListener('load', function(){
+    galleryLoaded++;
+    item.classList.add('ready');
+    finishGalleryAttempt();
+  }, {once:true});
+
+  img.addEventListener('error', function onGalleryError(){
+    if(img.dataset.extTried === 'jpg'){
+      img.dataset.extTried = 'jpeg';
+      img.src = 'images/galeri-' + index + '.jpeg';
+      return;
+    }
+    item.remove();
+    finishGalleryAttempt();
+  });
+
+  item.addEventListener('click', function(){
+    if(img.complete && img.naturalWidth){ openLightbox(img.src); }
+  });
+
+  item.appendChild(img);
+  galleryGrid.appendChild(item);
+  img.src = 'images/galeri-' + index + '.jpg';
+}
+
+if(galleryGrid){
+  for(var i=1;i<=8;i++) loadGalleryItem(i);
+}
+
+function openLightbox(src){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e){
+  if(e.target.id==='lightbox' || e.target.tagName==='BUTTON'){
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+/* gift confirmation — edit this WhatsApp number before publish */
+var GIFT_WHATSAPP = '6281234567890'; // EDIT: nomor WhatsApp penerima, format 62xxxxxxxxxxx
+
+function confirmGiftViaWhatsApp(){
+  var senderEl = document.getElementById('giftSender');
+  var recipientEl = document.getElementById('giftRecipient');
+  var noteEl = document.getElementById('giftNote');
+  var sender = senderEl ? senderEl.value.trim() : '';
+  var recipient = recipientEl ? recipientEl.value : '';
+  var note = noteEl ? noteEl.value.trim() : '';
+
+  if(!sender){
+    if(senderEl){ senderEl.focus(); }
+    return;
+  }
+
+  var message = 'Assalamu\'alaikum, saya ' + sender +
+    '. Saya ingin mengonfirmasi bahwa saya sudah mengirim hadiah pernikahan untuk ' + recipient + '.' +
+    (note ? '\n\nCatatan: ' + note : '') +
+    '\n\nSaya dapat melampirkan bukti transfer di chat ini jika diperlukan. Terima kasih.';
+
+  var url = 'https://wa.me/' + GIFT_WHATSAPP + '?text=' + encodeURIComponent(message);
+  window.open(url, '_blank', 'noopener');
+}
+
+/* RSVP (in-memory demo — hubungkan ke Google Sheets/Firebase untuk penyimpanan permanen) */
+var rsvpData = [];
+function submitRsvp(e){
+  e.preventDefault();
+  var name = document.getElementById('rsvpName').value.trim();
+  var status = document.getElementById('rsvpStatus').value;
+  var count = document.getElementById('rsvpCount').value;
+  var msg = document.getElementById('rsvpMsg').value.trim();
+  if(!name) return;
+  rsvpData.unshift({name:name, status:status, count:count, msg:msg});
+  renderRsvp();
+  document.getElementById('rsvpForm').reset();
+}
+function renderRsvp(){
+  var list = document.getElementById('rsvpList');
+  list.innerHTML = '';
+  rsvpData.forEach(function(r){
+    var div = document.createElement('div');
+    div.className = 'rsvp-entry';
+    div.innerHTML = '<span class="status">'+r.status+'</span><b>'+escapeHtml(r.name)+'</b><br>Jumlah tamu: '+r.count+(r.msg? '<br>&ldquo;'+escapeHtml(r.msg)+'&rdquo;':'');
+    list.appendChild(div);
+  });
+}
+
+/* Wishes (in-memory demo) */
+var wishData = [];
+function submitWish(e){
+  e.preventDefault();
+  var name = document.getElementById('wishName').value.trim();
+  var text = document.getElementById('wishText').value.trim();
+  if(!name || !text) return;
+  wishData.unshift({name:name, text:text, time:new Date().toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})});
+  renderWish();
+  e.target.reset();
+}
+function renderWish(){
+  var list = document.getElementById('wishList');
+  var empty = document.getElementById('wishEmpty');
+  if(wishData.length){ if(empty) empty.style.display='none'; } else { if(empty) empty.style.display='block'; }
+  list.querySelectorAll('.wish-entry').forEach(function(el){ el.remove(); });
+  wishData.forEach(function(w){
+    var div = document.createElement('div');
+    div.className = 'wish-entry';
+    div.innerHTML = '<div class="wname">'+escapeHtml(w.name)+'</div><div class="wtext">'+escapeHtml(w.text)+'</div><div class="wtime">'+w.time+'</div>';
+    list.appendChild(div);
+  });
+}
+
+function copyText(text, btn){
+  navigator.clipboard.writeText(text).then(function(){
+    var orig = btn.textContent;
+    btn.textContent = 'Tersalin!';
+    setTimeout(function(){ btn.textContent = orig; }, 1500);
+  });
+}
+
+function escapeHtml(str){
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+</script>
+
+<!-- ============================= BACKGROUND MUSIC ============================= -->
+<audio id="bgMusic" loop preload="auto">
+  <!-- Ganti file MP3 di bawah ini sesuai lagu yang ingin digunakan -->
+  <source src="audio/wedding-theme.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicToggle" class="music-toggle muted" type="button" aria-label="Nyalakan atau matikan musik">
+  <svg class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path d="M11 5L6.5 9H3v6h3.5L11 19V5z"></path>
+    <path class="music-wave" d="M15.5 8.5a5 5 0 010 7"></path>
+    <path class="music-wave" d="M18 6a8.5 8.5 0 010 12"></path>
+  </svg>
+  <span class="music-label">Musik Off</span>
+</button>
+
+</body>
+</html>
