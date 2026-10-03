@@ -1,0 +1,14 @@
+{
+  "name": "undangan-online-nafi-musa",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vercel/blob": "2.6.1"
+  },
+  "devDependencies": {
+    "vercel": "^59.26.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
