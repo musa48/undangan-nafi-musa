@@ -22,6 +22,8 @@ Project ini dibuat dari `index.html` lama dan dipisahkan tanpa migrasi Tailwind 
 ├── images/
 ├── audio/
 ├── package.json
+├── vercel.json
+├── DEPLOY-VERCEL.md
 └── .env.example
 ```
 
@@ -30,8 +32,8 @@ Project ini dibuat dari `index.html` lama dan dipisahkan tanpa migrasi Tailwind 
 ## Menjalankan lokal
 
 ```bash
-npm install
-npm run dev
+npm ci
+npx vercel dev
 ```
 
 Lalu buka:
@@ -115,11 +117,14 @@ Endpoint export juga menerima `?key=...`, tetapi header `x-admin-key` lebih disa
 
 1. Push project ke GitHub.
 2. Import repository di Vercel.
-3. Buat/connect **Private Vercel Blob** pada project.
-4. Tambahkan `ADMIN_EXPORT_KEY` pada Environment Variables.
-5. Deploy ulang.
+3. Buat/connect **Private Vercel Blob** ke project dan environment Production.
+4. Pastikan integrasi OIDC tersedia di deployment (`BLOB_STORE_ID` dan token OIDC yang dikelola Vercel), atau gunakan `BLOB_READ_WRITE_TOKEN` yang valid.
+5. Tambahkan `ADMIN_EXPORT_KEY` bila membutuhkan fitur export.
+6. **Redeploy Production** setelah menghubungkan Blob dan environment.
 
-Di local development project memakai `.data`. Pada Vercel Preview/Production, storage otomatis memakai Private Vercel Blob.
+Lihat `DEPLOY-VERCEL.md` untuk panduan lengkap.
+
+Di local development project memakai `.data`. Pada Vercel Preview/Production, storage otomatis memakai Private Vercel Blob **jika autentikasinya telah terhubung**.
 
 ## Catatan asset CSS
 
